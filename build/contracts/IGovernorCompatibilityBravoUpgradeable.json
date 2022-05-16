@@ -1,0 +1,4878 @@
+{
+  "contractName": "IGovernorCompatibilityBravoUpgradeable",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProposalCanceled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "proposer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address[]",
+          "name": "targets",
+          "type": "address[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "string[]",
+          "name": "signatures",
+          "type": "string[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes[]",
+          "name": "calldatas",
+          "type": "bytes[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "startBlock",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "endBlock",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "name": "ProposalCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProposalExecuted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "support",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "VoteCast",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "COUNTING_MODE",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "support",
+          "type": "uint8"
+        }
+      ],
+      "name": "castVote",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "support",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint8",
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "castVoteBySig",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "support",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "castVoteWithReason",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "blockNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "getVotes",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasVoted",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "targets",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "calldatas",
+          "type": "bytes[]"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "descriptionHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "hashProposal",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "proposalDeadline",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "proposalSnapshot",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "blockNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "quorum",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "state",
+      "outputs": [
+        {
+          "internalType": "enum IGovernorUpgradeable.ProposalState",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "votingDelay",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "votingPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "quorumVotes",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "proposals",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "proposer",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "eta",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startBlock",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "endBlock",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "forVotes",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "againstVotes",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "abstainVotes",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "canceled",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "executed",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "targets",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "calldatas",
+          "type": "bytes[]"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "name": "propose",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "targets",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "string[]",
+          "name": "signatures",
+          "type": "string[]"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "calldatas",
+          "type": "bytes[]"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "name": "propose",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "queue",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "targets",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "calldatas",
+          "type": "bytes[]"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "descriptionHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "execute",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "execute",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancel",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getActions",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "targets",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "values",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "string[]",
+          "name": "signatures",
+          "type": "string[]"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "calldatas",
+          "type": "bytes[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        }
+      ],
+      "name": "getReceipt",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "hasVoted",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint8",
+              "name": "support",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint96",
+              "name": "votes",
+              "type": "uint96"
+            }
+          ],
+          "internalType": "struct IGovernorCompatibilityBravoUpgradeable.Receipt",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"ProposalCanceled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"proposer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"targets\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"},{\"indexed\":false,\"internalType\":\"string[]\",\"name\":\"signatures\",\"type\":\"string[]\"},{\"indexed\":false,\"internalType\":\"bytes[]\",\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"startBlock\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endBlock\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"ProposalCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"ProposalExecuted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"voter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"support\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"weight\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"VoteCast\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"COUNTING_MODE\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"cancel\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"support\",\"type\":\"uint8\"}],\"name\":\"castVote\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"support\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"castVoteBySig\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"support\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"castVoteWithReason\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"targets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes[]\",\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"internalType\":\"bytes32\",\"name\":\"descriptionHash\",\"type\":\"bytes32\"}],\"name\":\"execute\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"execute\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"getActions\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"targets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"},{\"internalType\":\"string[]\",\"name\":\"signatures\",\"type\":\"string[]\"},{\"internalType\":\"bytes[]\",\"name\":\"calldatas\",\"type\":\"bytes[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"voter\",\"type\":\"address\"}],\"name\":\"getReceipt\",\"outputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"hasVoted\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"support\",\"type\":\"uint8\"},{\"internalType\":\"uint96\",\"name\":\"votes\",\"type\":\"uint96\"}],\"internalType\":\"struct IGovernorCompatibilityBravoUpgradeable.Receipt\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"getVotes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasVoted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"targets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes[]\",\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"internalType\":\"bytes32\",\"name\":\"descriptionHash\",\"type\":\"bytes32\"}],\"name\":\"hashProposal\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"proposalDeadline\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"proposalSnapshot\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"proposals\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"proposer\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"eta\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"forVotes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"againstVotes\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"abstainVotes\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"canceled\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"targets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes[]\",\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"propose\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"targets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"},{\"internalType\":\"string[]\",\"name\":\"signatures\",\"type\":\"string[]\"},{\"internalType\":\"bytes[]\",\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"propose\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"queue\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"quorum\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"quorumVotes\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"state\",\"outputs\":[{\"internalType\":\"enum IGovernorUpgradeable.ProposalState\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"votingDelay\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"votingPeriod\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Interface extension that adds missing functions to the {Governor} core to provide `GovernorBravo` compatibility. _Available since v4.3._\",\"kind\":\"dev\",\"methods\":{\"COUNTING_MODE()\":{\"details\":\"A description of the possible `support` values for {castVote} and the way these votes are counted, meant to be consumed by UIs to show correct vote options and interpret the results. The string is a URL-encoded sequence of key-value pairs that each describe one aspect, for example `support=bravo&quorum=for,abstain`. There are 2 standard keys: `support` and `quorum`. - `support=bravo` refers to the vote options 0 = Against, 1 = For, 2 = Abstain, as in `GovernorBravo`. - `quorum=bravo` means that only For votes are counted towards quorum. - `quorum=for,abstain` means that both For and Abstain votes are counted towards quorum. NOTE: The string can be decoded by the standard https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams[`URLSearchParams`] JavaScript class.\"},\"cancel(uint256)\":{\"details\":\"Cancels a proposal only if sender is the proposer, or proposer delegates dropped below proposal threshold.\"},\"castVote(uint256,uint8)\":{\"details\":\"Cast a vote Emits a {VoteCast} event.\"},\"castVoteBySig(uint256,uint8,uint8,bytes32,bytes32)\":{\"details\":\"Cast a vote using the user cryptographic signature. Emits a {VoteCast} event.\"},\"castVoteWithReason(uint256,uint8,string)\":{\"details\":\"Cast a vote with a reason Emits a {VoteCast} event.\"},\"execute(address[],uint256[],bytes[],bytes32)\":{\"details\":\"Execute a successful proposal. This requires the quorum to be reached, the vote to be successful, and the deadline to be reached. Emits a {ProposalExecuted} event. Note: some module can modify the requirements for execution, for example by adding an additional timelock.\"},\"execute(uint256)\":{\"details\":\"Part of the Governor Bravo's interface: _\\\"Executes a queued proposal if eta has passed\\\"_.\"},\"getActions(uint256)\":{\"details\":\"Part of the Governor Bravo's interface: _\\\"Gets actions of a proposal\\\"_.\"},\"getReceipt(uint256,address)\":{\"details\":\"Part of the Governor Bravo's interface: _\\\"Gets the receipt for a voter on a given proposal\\\"_.\"},\"getVotes(address,uint256)\":{\"details\":\"Voting power of an `account` at a specific `blockNumber`. Note: this can be implemented in a number of ways, for example by reading the delegated balance from one (or multiple), {ERC20Votes} tokens.\"},\"hasVoted(uint256,address)\":{\"details\":\"Returns weither `account` has cast a vote on `proposalId`.\"},\"hashProposal(address[],uint256[],bytes[],bytes32)\":{\"details\":\"Hashing function used to (re)build the proposal id from the proposal details..\"},\"name()\":{\"details\":\"Name of the governor instance (used in building the ERC712 domain separator).\"},\"proposalDeadline(uint256)\":{\"details\":\"Block number at which votes close. Votes close at the end of this block, so it is possible to cast a vote during this block.\"},\"proposalSnapshot(uint256)\":{\"details\":\"Block number used to retrieve user's votes and quorum. As per Compound's Comp and OpenZeppelin's ERC20Votes, the snapshot is performed at the end of this block. Hence, voting for this proposal starts at the beginning of the following block.\"},\"proposals(uint256)\":{\"details\":\"Part of the Governor Bravo's interface: _\\\"The official record of all proposals ever proposed\\\"_.\"},\"propose(address[],uint256[],bytes[],string)\":{\"details\":\"Create a new proposal. Vote start {IGovernor-votingDelay} blocks after the proposal is created and ends {IGovernor-votingPeriod} blocks after the voting starts. Emits a {ProposalCreated} event.\"},\"propose(address[],uint256[],string[],bytes[],string)\":{\"details\":\"Part of the Governor Bravo's interface: _\\\"Function used to propose a new proposal\\\"_.\"},\"queue(uint256)\":{\"details\":\"Part of the Governor Bravo's interface: _\\\"Queues a proposal of state succeeded\\\"_.\"},\"quorum(uint256)\":{\"details\":\"Minimum number of cast voted required for a proposal to be successful. Note: The `blockNumber` parameter corresponds to the snaphot used for counting vote. This allows to scale the quroum depending on values such as the totalSupply of a token at this block (see {ERC20Votes}).\"},\"quorumVotes()\":{\"details\":\"Part of the Governor Bravo's interface.\"},\"state(uint256)\":{\"details\":\"Current state of a proposal, following Compound's convention\"},\"supportsInterface(bytes4)\":{\"details\":\"Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas.\"},\"version()\":{\"details\":\"Version of the governor instance (used in building the ERC712 domain separator). Default: \\\"1\\\"\"},\"votingDelay()\":{\"details\":\"Delay, in number of block, between the proposal is created and the vote starts. This can be increassed to leave time for users to buy voting power, of delegate it, before the voting of a proposal starts.\"},\"votingPeriod()\":{\"details\":\"Delay, in number of blocks, between the vote start and vote ends. NOTE: The {votingDelay} can delay the start of the vote. This must be considered when setting the voting duration compared to the voting delay.\"}},\"stateVariables\":{\"__gap\":{\"details\":\"This empty reserved space is put in place to allow future versions to add new variables without shifting down storage in the inheritance chain. See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"COUNTING_MODE()\":{\"notice\":\"module:voting\"},\"getVotes(address,uint256)\":{\"notice\":\"module:reputation\"},\"hasVoted(uint256,address)\":{\"notice\":\"module:voting\"},\"hashProposal(address[],uint256[],bytes[],bytes32)\":{\"notice\":\"module:core\"},\"name()\":{\"notice\":\"module:core\"},\"proposalDeadline(uint256)\":{\"notice\":\"module:core\"},\"proposalSnapshot(uint256)\":{\"notice\":\"module:core\"},\"quorum(uint256)\":{\"notice\":\"module:user-config\"},\"state(uint256)\":{\"notice\":\"module:core\"},\"version()\":{\"notice\":\"module:core\"},\"votingDelay()\":{\"notice\":\"module:user-config\"},\"votingPeriod()\":{\"notice\":\"module:user-config\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@openzeppelin/contracts-upgradeable/governance/compatibility/IGovernorCompatibilityBravoUpgradeable.sol\":\"IGovernorCompatibilityBravoUpgradeable\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol\":{\"keccak256\":\"0xcbbe2908ebd8339c132372673a2284f0b81c64644166dc15ea7b2ad0be80472e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://87c6bc87b17eff559109f27a81e4df589ae53bcc4e55335ffa03c98114a5432c\",\"dweb:/ipfs/QmTpkhrtEuQVPuL5ufY8hKtfVb4j5T18gFp76PZbWaUW6E\"]},\"@openzeppelin/contracts-upgradeable/governance/compatibility/IGovernorCompatibilityBravoUpgradeable.sol\":{\"keccak256\":\"0x0141819a40e31a17adc74bc9091507424188d2d2a9848605afb6962ac347a996\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://35d65675fe708cff83660a7d1b0cb7d7dbd40b86e2bce81a01d77b142679c2ba\",\"dweb:/ipfs/QmZjuyqMup2pM5psz7sqVG7GWUwXAA6oW5aHz4uf18jCFK\"]},\"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol\":{\"keccak256\":\"0x372b0bc04e3b4c074559bbbfb1317afddb56de5504158ca25a7f9cd403980445\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://88b812365459a042c2aab5c689ff723098e0e19cb372718d3dd028b3c406e4f6\",\"dweb:/ipfs/QmTsLrMYzPjnB85pyAy85NNcBg64RPVueJARzwNg9xMyR1\"]},\"@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol\":{\"keccak256\":\"0x55cf2bd9fc76704ddcdc19834cd288b7de00fc0f298a40ea16a954ae8991db2d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://37e4df53c8d2e3c1062c1c7b2c17366db7de03bfd2559d340ca95c588aa49c2f\",\"dweb:/ipfs/QmQ9vsG3o4wED3FRogiSUhdzJvZSjjYFtydzXvFEJtgZk4\"]},\"@openzeppelin/contracts-upgradeable/utils/introspection/ERC165Upgradeable.sol\":{\"keccak256\":\"0x9a3b990bd56d139df3e454a9edf1c64668530b5a77fc32eb063bc206f958274a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0895399d170daab2d69b4c43a0202e5a07f2e67a93b26e3354dcbedb062232f7\",\"dweb:/ipfs/QmUM1VH3XDk559Dsgh4QPvupr3YVKjz87HrSyYzzVFZbxw\"]},\"@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol\":{\"keccak256\":\"0xc6cef87559d0aeffdf0a99803de655938a7779ec0a3cd5d4383483ad85565a09\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://92ad7e572cf44e6b4b37631b44b62f9eb9fb1cf14d9ce51c1504d5dc7ccaf758\",\"dweb:/ipfs/QmcnbqX85tsWnUXPmtuPLE4SczME2sJaTfmqEFkuAJvWhy\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (governance/compatibility/IGovernorCompatibilityBravo.sol)\n\npragma solidity ^0.8.0;\n\nimport \"../IGovernorUpgradeable.sol\";\nimport \"../../proxy/utils/Initializable.sol\";\n\n/**\n * @dev Interface extension that adds missing functions to the {Governor} core to provide `GovernorBravo` compatibility.\n *\n * _Available since v4.3._\n */\nabstract contract IGovernorCompatibilityBravoUpgradeable is Initializable, IGovernorUpgradeable {\n    function __IGovernorCompatibilityBravo_init() internal onlyInitializing {\n    }\n\n    function __IGovernorCompatibilityBravo_init_unchained() internal onlyInitializing {\n    }\n    /**\n     * @dev Proposal structure from Compound Governor Bravo. Not actually used by the compatibility layer, as\n     * {{proposal}} returns a very different structure.\n     */\n    struct Proposal {\n        uint256 id;\n        address proposer;\n        uint256 eta;\n        address[] targets;\n        uint256[] values;\n        string[] signatures;\n        bytes[] calldatas;\n        uint256 startBlock;\n        uint256 endBlock;\n        uint256 forVotes;\n        uint256 againstVotes;\n        uint256 abstainVotes;\n        bool canceled;\n        bool executed;\n        mapping(address => Receipt) receipts;\n    }\n\n    /**\n     * @dev Receipt structure from Compound Governor Bravo\n     */\n    struct Receipt {\n        bool hasVoted;\n        uint8 support;\n        uint96 votes;\n    }\n\n    /**\n     * @dev Part of the Governor Bravo's interface.\n     */\n    function quorumVotes() public view virtual returns (uint256);\n\n    /**\n     * @dev Part of the Governor Bravo's interface: _\"The official record of all proposals ever proposed\"_.\n     */\n    function proposals(uint256)\n        public\n        view\n        virtual\n        returns (\n            uint256 id,\n            address proposer,\n            uint256 eta,\n            uint256 startBlock,\n            uint256 endBlock,\n            uint256 forVotes,\n            uint256 againstVotes,\n            uint256 abstainVotes,\n            bool canceled,\n            bool executed\n        );\n\n    /**\n     * @dev Part of the Governor Bravo's interface: _\"Function used to propose a new proposal\"_.\n     */\n    function propose(\n        address[] memory targets,\n        uint256[] memory values,\n        string[] memory signatures,\n        bytes[] memory calldatas,\n        string memory description\n    ) public virtual returns (uint256);\n\n    /**\n     * @dev Part of the Governor Bravo's interface: _\"Queues a proposal of state succeeded\"_.\n     */\n    function queue(uint256 proposalId) public virtual;\n\n    /**\n     * @dev Part of the Governor Bravo's interface: _\"Executes a queued proposal if eta has passed\"_.\n     */\n    function execute(uint256 proposalId) public payable virtual;\n\n    /**\n     * @dev Cancels a proposal only if sender is the proposer, or proposer delegates dropped below proposal threshold.\n     */\n    function cancel(uint256 proposalId) public virtual;\n\n    /**\n     * @dev Part of the Governor Bravo's interface: _\"Gets actions of a proposal\"_.\n     */\n    function getActions(uint256 proposalId)\n        public\n        view\n        virtual\n        returns (\n            address[] memory targets,\n            uint256[] memory values,\n            string[] memory signatures,\n            bytes[] memory calldatas\n        );\n\n    /**\n     * @dev Part of the Governor Bravo's interface: _\"Gets the receipt for a voter on a given proposal\"_.\n     */\n    function getReceipt(uint256 proposalId, address voter) public view virtual returns (Receipt memory);\n\n    /**\n     * @dev This empty reserved space is put in place to allow future versions to add new\n     * variables without shifting down storage in the inheritance chain.\n     * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps\n     */\n    uint256[50] private __gap;\n}\n",
+  "sourcePath": "@openzeppelin\\contracts-upgradeable\\governance\\compatibility\\IGovernorCompatibilityBravoUpgradeable.sol",
+  "ast": {
+    "absolutePath": "@openzeppelin/contracts-upgradeable/governance/compatibility/IGovernorCompatibilityBravoUpgradeable.sol",
+    "exportedSymbols": {
+      "AddressUpgradeable": [
+        5604
+      ],
+      "ERC165Upgradeable": [
+        6798
+      ],
+      "IERC165Upgradeable": [
+        6810
+      ],
+      "IGovernorCompatibilityBravoUpgradeable": [
+        3825
+      ],
+      "IGovernorUpgradeable": [
+        2044
+      ],
+      "Initializable": [
+        5225
+      ]
+    },
+    "id": 3826,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3656,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "125:23:11"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "file": "../IGovernorUpgradeable.sol",
+        "id": 3657,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3826,
+        "sourceUnit": 2045,
+        "src": "150:37:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "file": "../../proxy/utils/Initializable.sol",
+        "id": 3658,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3826,
+        "sourceUnit": 5226,
+        "src": "188:45:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 3660,
+              "name": "Initializable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 5225,
+              "src": "454:13:11"
+            },
+            "id": 3661,
+            "nodeType": "InheritanceSpecifier",
+            "src": "454:13:11"
+          },
+          {
+            "baseName": {
+              "id": 3662,
+              "name": "IGovernorUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 2044,
+              "src": "469:20:11"
+            },
+            "id": 3663,
+            "nodeType": "InheritanceSpecifier",
+            "src": "469:20:11"
+          }
+        ],
+        "canonicalName": "IGovernorCompatibilityBravoUpgradeable",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 3659,
+          "nodeType": "StructuredDocumentation",
+          "src": "235:158:11",
+          "text": " @dev Interface extension that adds missing functions to the {Governor} core to provide `GovernorBravo` compatibility.\n _Available since v4.3._"
+        },
+        "fullyImplemented": false,
+        "id": 3825,
+        "linearizedBaseContracts": [
+          3825,
+          2044,
+          6810,
+          5225
+        ],
+        "name": "IGovernorCompatibilityBravoUpgradeable",
+        "nameLocation": "412:38:11",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 3668,
+              "nodeType": "Block",
+              "src": "568:7:11",
+              "statements": []
+            },
+            "id": 3669,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 3666,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 3665,
+                  "name": "onlyInitializing",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 5209,
+                  "src": "551:16:11"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "551:16:11"
+              }
+            ],
+            "name": "__IGovernorCompatibilityBravo_init",
+            "nameLocation": "505:34:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3664,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "539:2:11"
+            },
+            "returnParameters": {
+              "id": 3667,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "568:0:11"
+            },
+            "scope": 3825,
+            "src": "496:79:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3674,
+              "nodeType": "Block",
+              "src": "663:7:11",
+              "statements": []
+            },
+            "id": 3675,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 3672,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 3671,
+                  "name": "onlyInitializing",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 5209,
+                  "src": "646:16:11"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "646:16:11"
+              }
+            ],
+            "name": "__IGovernorCompatibilityBravo_init_unchained",
+            "nameLocation": "590:44:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3670,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "634:2:11"
+            },
+            "returnParameters": {
+              "id": 3673,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "663:0:11"
+            },
+            "scope": 3825,
+            "src": "581:89:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "IGovernorCompatibilityBravoUpgradeable.Proposal",
+            "id": 3713,
+            "members": [
+              {
+                "constant": false,
+                "id": 3677,
+                "mutability": "mutable",
+                "name": "id",
+                "nameLocation": "891:2:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "883:10:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3676,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "883:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3679,
+                "mutability": "mutable",
+                "name": "proposer",
+                "nameLocation": "911:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "903:16:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 3678,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "903:7:11",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3681,
+                "mutability": "mutable",
+                "name": "eta",
+                "nameLocation": "937:3:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "929:11:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3680,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "929:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3684,
+                "mutability": "mutable",
+                "name": "targets",
+                "nameLocation": "960:7:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "950:17:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                  "typeString": "address[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 3682,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "950:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 3683,
+                  "nodeType": "ArrayTypeName",
+                  "src": "950:9:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                    "typeString": "address[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3687,
+                "mutability": "mutable",
+                "name": "values",
+                "nameLocation": "987:6:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "977:16:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 3685,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "977:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 3686,
+                  "nodeType": "ArrayTypeName",
+                  "src": "977:9:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3690,
+                "mutability": "mutable",
+                "name": "signatures",
+                "nameLocation": "1012:10:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1003:19:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                  "typeString": "string[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 3688,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1003:6:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "id": 3689,
+                  "nodeType": "ArrayTypeName",
+                  "src": "1003:8:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                    "typeString": "string[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3693,
+                "mutability": "mutable",
+                "name": "calldatas",
+                "nameLocation": "1040:9:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1032:17:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                  "typeString": "bytes[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 3691,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1032:5:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "id": 3692,
+                  "nodeType": "ArrayTypeName",
+                  "src": "1032:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                    "typeString": "bytes[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3695,
+                "mutability": "mutable",
+                "name": "startBlock",
+                "nameLocation": "1067:10:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1059:18:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3694,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1059:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3697,
+                "mutability": "mutable",
+                "name": "endBlock",
+                "nameLocation": "1095:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1087:16:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3696,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1087:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3699,
+                "mutability": "mutable",
+                "name": "forVotes",
+                "nameLocation": "1121:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1113:16:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3698,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1113:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3701,
+                "mutability": "mutable",
+                "name": "againstVotes",
+                "nameLocation": "1147:12:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1139:20:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3700,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1139:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3703,
+                "mutability": "mutable",
+                "name": "abstainVotes",
+                "nameLocation": "1177:12:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1169:20:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3702,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1169:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3705,
+                "mutability": "mutable",
+                "name": "canceled",
+                "nameLocation": "1204:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1199:13:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 3704,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1199:4:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3707,
+                "mutability": "mutable",
+                "name": "executed",
+                "nameLocation": "1227:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1222:13:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 3706,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1222:4:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3712,
+                "mutability": "mutable",
+                "name": "receipts",
+                "nameLocation": "1273:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1245:36:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Receipt_$3720_storage_$",
+                  "typeString": "mapping(address => struct IGovernorCompatibilityBravoUpgradeable.Receipt)"
+                },
+                "typeName": {
+                  "id": 3711,
+                  "keyType": {
+                    "id": 3708,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1253:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1245:27:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Receipt_$3720_storage_$",
+                    "typeString": "mapping(address => struct IGovernorCompatibilityBravoUpgradeable.Receipt)"
+                  },
+                  "valueType": {
+                    "id": 3710,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 3709,
+                      "name": "Receipt",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 3720,
+                      "src": "1264:7:11"
+                    },
+                    "referencedDeclaration": 3720,
+                    "src": "1264:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Receipt_$3720_storage_ptr",
+                      "typeString": "struct IGovernorCompatibilityBravoUpgradeable.Receipt"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Proposal",
+            "nameLocation": "864:8:11",
+            "nodeType": "StructDefinition",
+            "scope": 3825,
+            "src": "857:431:11",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IGovernorCompatibilityBravoUpgradeable.Receipt",
+            "id": 3720,
+            "members": [
+              {
+                "constant": false,
+                "id": 3715,
+                "mutability": "mutable",
+                "name": "hasVoted",
+                "nameLocation": "1399:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3720,
+                "src": "1394:13:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 3714,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1394:4:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3717,
+                "mutability": "mutable",
+                "name": "support",
+                "nameLocation": "1423:7:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3720,
+                "src": "1417:13:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 3716,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1417:5:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3719,
+                "mutability": "mutable",
+                "name": "votes",
+                "nameLocation": "1447:5:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3720,
+                "src": "1440:12:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint96",
+                  "typeString": "uint96"
+                },
+                "typeName": {
+                  "id": 3718,
+                  "name": "uint96",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1440:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint96",
+                    "typeString": "uint96"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Receipt",
+            "nameLocation": "1376:7:11",
+            "nodeType": "StructDefinition",
+            "scope": 3825,
+            "src": "1369:90:11",
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3721,
+              "nodeType": "StructuredDocumentation",
+              "src": "1465:63:11",
+              "text": " @dev Part of the Governor Bravo's interface."
+            },
+            "functionSelector": "24bc1a64",
+            "id": 3726,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "quorumVotes",
+            "nameLocation": "1542:11:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3722,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1553:2:11"
+            },
+            "returnParameters": {
+              "id": 3725,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3724,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3726,
+                  "src": "1585:7:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3723,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1585:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1584:9:11"
+            },
+            "scope": 3825,
+            "src": "1533:61:11",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3727,
+              "nodeType": "StructuredDocumentation",
+              "src": "1600:119:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"The official record of all proposals ever proposed\"_."
+            },
+            "functionSelector": "013cf08b",
+            "id": 3752,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "proposals",
+            "nameLocation": "1733:9:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3730,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3729,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1743:7:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3728,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1743:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1742:9:11"
+            },
+            "returnParameters": {
+              "id": 3751,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3732,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "1834:2:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1826:10:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3731,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1826:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3734,
+                  "mutability": "mutable",
+                  "name": "proposer",
+                  "nameLocation": "1858:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1850:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3733,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1850:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3736,
+                  "mutability": "mutable",
+                  "name": "eta",
+                  "nameLocation": "1888:3:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1880:11:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3735,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1880:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3738,
+                  "mutability": "mutable",
+                  "name": "startBlock",
+                  "nameLocation": "1913:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1905:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3737,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1905:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3740,
+                  "mutability": "mutable",
+                  "name": "endBlock",
+                  "nameLocation": "1945:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1937:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3739,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1937:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3742,
+                  "mutability": "mutable",
+                  "name": "forVotes",
+                  "nameLocation": "1975:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1967:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3741,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1967:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3744,
+                  "mutability": "mutable",
+                  "name": "againstVotes",
+                  "nameLocation": "2005:12:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1997:20:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3743,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1997:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3746,
+                  "mutability": "mutable",
+                  "name": "abstainVotes",
+                  "nameLocation": "2039:12:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "2031:20:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3745,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2031:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3748,
+                  "mutability": "mutable",
+                  "name": "canceled",
+                  "nameLocation": "2070:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "2065:13:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3747,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2065:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3750,
+                  "mutability": "mutable",
+                  "name": "executed",
+                  "nameLocation": "2097:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "2092:13:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3749,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2092:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1812:303:11"
+            },
+            "scope": 3825,
+            "src": "1724:392:11",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3753,
+              "nodeType": "StructuredDocumentation",
+              "src": "2122:108:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Function used to propose a new proposal\"_."
+            },
+            "functionSelector": "da95691a",
+            "id": 3772,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "propose",
+            "nameLocation": "2244:7:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3768,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3756,
+                  "mutability": "mutable",
+                  "name": "targets",
+                  "nameLocation": "2278:7:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2261:24:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3754,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2261:7:11",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 3755,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2261:9:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3759,
+                  "mutability": "mutable",
+                  "name": "values",
+                  "nameLocation": "2312:6:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2295:23:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3757,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2295:7:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 3758,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2295:9:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3762,
+                  "mutability": "mutable",
+                  "name": "signatures",
+                  "nameLocation": "2344:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2328:26:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "string[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3760,
+                      "name": "string",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2328:6:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage_ptr",
+                        "typeString": "string"
+                      }
+                    },
+                    "id": 3761,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2328:8:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                      "typeString": "string[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3765,
+                  "mutability": "mutable",
+                  "name": "calldatas",
+                  "nameLocation": "2379:9:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2364:24:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "bytes[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3763,
+                      "name": "bytes",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2364:5:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage_ptr",
+                        "typeString": "bytes"
+                      }
+                    },
+                    "id": 3764,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2364:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                      "typeString": "bytes[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3767,
+                  "mutability": "mutable",
+                  "name": "description",
+                  "nameLocation": "2412:11:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2398:25:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3766,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2398:6:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2251:178:11"
+            },
+            "returnParameters": {
+              "id": 3771,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3770,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2454:7:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3769,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2454:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2453:9:11"
+            },
+            "scope": 3825,
+            "src": "2235:228:11",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3773,
+              "nodeType": "StructuredDocumentation",
+              "src": "2469:105:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Queues a proposal of state succeeded\"_."
+            },
+            "functionSelector": "ddf0b009",
+            "id": 3778,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "queue",
+            "nameLocation": "2588:5:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3776,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3775,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "2602:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3778,
+                  "src": "2594:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3774,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2594:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2593:20:11"
+            },
+            "returnParameters": {
+              "id": 3777,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2628:0:11"
+            },
+            "scope": 3825,
+            "src": "2579:50:11",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3779,
+              "nodeType": "StructuredDocumentation",
+              "src": "2635:113:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Executes a queued proposal if eta has passed\"_."
+            },
+            "functionSelector": "fe0d94c1",
+            "id": 3784,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "execute",
+            "nameLocation": "2762:7:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3782,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3781,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "2778:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3784,
+                  "src": "2770:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3780,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2770:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2769:20:11"
+            },
+            "returnParameters": {
+              "id": 3783,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2812:0:11"
+            },
+            "scope": 3825,
+            "src": "2753:60:11",
+            "stateMutability": "payable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3785,
+              "nodeType": "StructuredDocumentation",
+              "src": "2819:130:11",
+              "text": " @dev Cancels a proposal only if sender is the proposer, or proposer delegates dropped below proposal threshold."
+            },
+            "functionSelector": "40e58ee5",
+            "id": 3790,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cancel",
+            "nameLocation": "2963:6:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3788,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3787,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "2978:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3790,
+                  "src": "2970:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3786,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2970:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2969:20:11"
+            },
+            "returnParameters": {
+              "id": 3789,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3004:0:11"
+            },
+            "scope": 3825,
+            "src": "2954:51:11",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3791,
+              "nodeType": "StructuredDocumentation",
+              "src": "3011:95:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Gets actions of a proposal\"_."
+            },
+            "functionSelector": "328dd982",
+            "id": 3808,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getActions",
+            "nameLocation": "3120:10:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3794,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3793,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "3139:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3131:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3792,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3131:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3130:20:11"
+            },
+            "returnParameters": {
+              "id": 3807,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3797,
+                  "mutability": "mutable",
+                  "name": "targets",
+                  "nameLocation": "3242:7:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3225:24:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3795,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3225:7:11",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 3796,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3225:9:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3800,
+                  "mutability": "mutable",
+                  "name": "values",
+                  "nameLocation": "3280:6:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3263:23:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3798,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3263:7:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 3799,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3263:9:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3803,
+                  "mutability": "mutable",
+                  "name": "signatures",
+                  "nameLocation": "3316:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3300:26:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "string[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3801,
+                      "name": "string",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3300:6:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage_ptr",
+                        "typeString": "string"
+                      }
+                    },
+                    "id": 3802,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3300:8:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                      "typeString": "string[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3806,
+                  "mutability": "mutable",
+                  "name": "calldatas",
+                  "nameLocation": "3355:9:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3340:24:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "bytes[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3804,
+                      "name": "bytes",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3340:5:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage_ptr",
+                        "typeString": "bytes"
+                      }
+                    },
+                    "id": 3805,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3340:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                      "typeString": "bytes[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3211:163:11"
+            },
+            "scope": 3825,
+            "src": "3111:264:11",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3809,
+              "nodeType": "StructuredDocumentation",
+              "src": "3381:117:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Gets the receipt for a voter on a given proposal\"_."
+            },
+            "functionSelector": "e23a9a52",
+            "id": 3819,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getReceipt",
+            "nameLocation": "3512:10:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3814,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3811,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "3531:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3819,
+                  "src": "3523:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3810,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3523:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3813,
+                  "mutability": "mutable",
+                  "name": "voter",
+                  "nameLocation": "3551:5:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3819,
+                  "src": "3543:13:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3812,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3543:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3522:35:11"
+            },
+            "returnParameters": {
+              "id": 3818,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3817,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3819,
+                  "src": "3587:14:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Receipt_$3720_memory_ptr",
+                    "typeString": "struct IGovernorCompatibilityBravoUpgradeable.Receipt"
+                  },
+                  "typeName": {
+                    "id": 3816,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 3815,
+                      "name": "Receipt",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 3720,
+                      "src": "3587:7:11"
+                    },
+                    "referencedDeclaration": 3720,
+                    "src": "3587:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Receipt_$3720_storage_ptr",
+                      "typeString": "struct IGovernorCompatibilityBravoUpgradeable.Receipt"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3586:16:11"
+            },
+            "scope": 3825,
+            "src": "3503:100:11",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 3820,
+              "nodeType": "StructuredDocumentation",
+              "src": "3609:254:11",
+              "text": " @dev This empty reserved space is put in place to allow future versions to add new\n variables without shifting down storage in the inheritance chain.\n See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps"
+            },
+            "id": 3824,
+            "mutability": "mutable",
+            "name": "__gap",
+            "nameLocation": "3888:5:11",
+            "nodeType": "VariableDeclaration",
+            "scope": 3825,
+            "src": "3868:25:11",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_uint256_$50_storage",
+              "typeString": "uint256[50]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 3821,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "3868:7:11",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "id": 3823,
+              "length": {
+                "hexValue": "3530",
+                "id": 3822,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "kind": "number",
+                "lValueRequested": false,
+                "nodeType": "Literal",
+                "src": "3876:2:11",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_rational_50_by_1",
+                  "typeString": "int_const 50"
+                },
+                "value": "50"
+              },
+              "nodeType": "ArrayTypeName",
+              "src": "3868:11:11",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_uint256_$50_storage_ptr",
+                "typeString": "uint256[50]"
+              }
+            },
+            "visibility": "private"
+          }
+        ],
+        "scope": 3826,
+        "src": "394:3502:11",
+        "usedErrors": []
+      }
+    ],
+    "src": "125:3772:11"
+  },
+  "legacyAST": {
+    "absolutePath": "@openzeppelin/contracts-upgradeable/governance/compatibility/IGovernorCompatibilityBravoUpgradeable.sol",
+    "exportedSymbols": {
+      "AddressUpgradeable": [
+        5604
+      ],
+      "ERC165Upgradeable": [
+        6798
+      ],
+      "IERC165Upgradeable": [
+        6810
+      ],
+      "IGovernorCompatibilityBravoUpgradeable": [
+        3825
+      ],
+      "IGovernorUpgradeable": [
+        2044
+      ],
+      "Initializable": [
+        5225
+      ]
+    },
+    "id": 3826,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3656,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "125:23:11"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/governance/IGovernorUpgradeable.sol",
+        "file": "../IGovernorUpgradeable.sol",
+        "id": 3657,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3826,
+        "sourceUnit": 2045,
+        "src": "150:37:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+        "file": "../../proxy/utils/Initializable.sol",
+        "id": 3658,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3826,
+        "sourceUnit": 5226,
+        "src": "188:45:11",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 3660,
+              "name": "Initializable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 5225,
+              "src": "454:13:11"
+            },
+            "id": 3661,
+            "nodeType": "InheritanceSpecifier",
+            "src": "454:13:11"
+          },
+          {
+            "baseName": {
+              "id": 3662,
+              "name": "IGovernorUpgradeable",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 2044,
+              "src": "469:20:11"
+            },
+            "id": 3663,
+            "nodeType": "InheritanceSpecifier",
+            "src": "469:20:11"
+          }
+        ],
+        "canonicalName": "IGovernorCompatibilityBravoUpgradeable",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 3659,
+          "nodeType": "StructuredDocumentation",
+          "src": "235:158:11",
+          "text": " @dev Interface extension that adds missing functions to the {Governor} core to provide `GovernorBravo` compatibility.\n _Available since v4.3._"
+        },
+        "fullyImplemented": false,
+        "id": 3825,
+        "linearizedBaseContracts": [
+          3825,
+          2044,
+          6810,
+          5225
+        ],
+        "name": "IGovernorCompatibilityBravoUpgradeable",
+        "nameLocation": "412:38:11",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 3668,
+              "nodeType": "Block",
+              "src": "568:7:11",
+              "statements": []
+            },
+            "id": 3669,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 3666,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 3665,
+                  "name": "onlyInitializing",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 5209,
+                  "src": "551:16:11"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "551:16:11"
+              }
+            ],
+            "name": "__IGovernorCompatibilityBravo_init",
+            "nameLocation": "505:34:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3664,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "539:2:11"
+            },
+            "returnParameters": {
+              "id": 3667,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "568:0:11"
+            },
+            "scope": 3825,
+            "src": "496:79:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 3674,
+              "nodeType": "Block",
+              "src": "663:7:11",
+              "statements": []
+            },
+            "id": 3675,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 3672,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 3671,
+                  "name": "onlyInitializing",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 5209,
+                  "src": "646:16:11"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "646:16:11"
+              }
+            ],
+            "name": "__IGovernorCompatibilityBravo_init_unchained",
+            "nameLocation": "590:44:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3670,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "634:2:11"
+            },
+            "returnParameters": {
+              "id": 3673,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "663:0:11"
+            },
+            "scope": 3825,
+            "src": "581:89:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "IGovernorCompatibilityBravoUpgradeable.Proposal",
+            "id": 3713,
+            "members": [
+              {
+                "constant": false,
+                "id": 3677,
+                "mutability": "mutable",
+                "name": "id",
+                "nameLocation": "891:2:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "883:10:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3676,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "883:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3679,
+                "mutability": "mutable",
+                "name": "proposer",
+                "nameLocation": "911:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "903:16:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 3678,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "903:7:11",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3681,
+                "mutability": "mutable",
+                "name": "eta",
+                "nameLocation": "937:3:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "929:11:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3680,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "929:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3684,
+                "mutability": "mutable",
+                "name": "targets",
+                "nameLocation": "960:7:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "950:17:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                  "typeString": "address[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 3682,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "950:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 3683,
+                  "nodeType": "ArrayTypeName",
+                  "src": "950:9:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                    "typeString": "address[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3687,
+                "mutability": "mutable",
+                "name": "values",
+                "nameLocation": "987:6:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "977:16:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 3685,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "977:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 3686,
+                  "nodeType": "ArrayTypeName",
+                  "src": "977:9:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3690,
+                "mutability": "mutable",
+                "name": "signatures",
+                "nameLocation": "1012:10:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1003:19:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                  "typeString": "string[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 3688,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1003:6:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "id": 3689,
+                  "nodeType": "ArrayTypeName",
+                  "src": "1003:8:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                    "typeString": "string[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3693,
+                "mutability": "mutable",
+                "name": "calldatas",
+                "nameLocation": "1040:9:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1032:17:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                  "typeString": "bytes[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 3691,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1032:5:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "id": 3692,
+                  "nodeType": "ArrayTypeName",
+                  "src": "1032:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                    "typeString": "bytes[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3695,
+                "mutability": "mutable",
+                "name": "startBlock",
+                "nameLocation": "1067:10:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1059:18:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3694,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1059:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3697,
+                "mutability": "mutable",
+                "name": "endBlock",
+                "nameLocation": "1095:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1087:16:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3696,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1087:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3699,
+                "mutability": "mutable",
+                "name": "forVotes",
+                "nameLocation": "1121:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1113:16:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3698,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1113:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3701,
+                "mutability": "mutable",
+                "name": "againstVotes",
+                "nameLocation": "1147:12:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1139:20:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3700,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1139:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3703,
+                "mutability": "mutable",
+                "name": "abstainVotes",
+                "nameLocation": "1177:12:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1169:20:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3702,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1169:7:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3705,
+                "mutability": "mutable",
+                "name": "canceled",
+                "nameLocation": "1204:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1199:13:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 3704,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1199:4:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3707,
+                "mutability": "mutable",
+                "name": "executed",
+                "nameLocation": "1227:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1222:13:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 3706,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1222:4:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3712,
+                "mutability": "mutable",
+                "name": "receipts",
+                "nameLocation": "1273:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3713,
+                "src": "1245:36:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Receipt_$3720_storage_$",
+                  "typeString": "mapping(address => struct IGovernorCompatibilityBravoUpgradeable.Receipt)"
+                },
+                "typeName": {
+                  "id": 3711,
+                  "keyType": {
+                    "id": 3708,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1253:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1245:27:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_struct$_Receipt_$3720_storage_$",
+                    "typeString": "mapping(address => struct IGovernorCompatibilityBravoUpgradeable.Receipt)"
+                  },
+                  "valueType": {
+                    "id": 3710,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 3709,
+                      "name": "Receipt",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 3720,
+                      "src": "1264:7:11"
+                    },
+                    "referencedDeclaration": 3720,
+                    "src": "1264:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Receipt_$3720_storage_ptr",
+                      "typeString": "struct IGovernorCompatibilityBravoUpgradeable.Receipt"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Proposal",
+            "nameLocation": "864:8:11",
+            "nodeType": "StructDefinition",
+            "scope": 3825,
+            "src": "857:431:11",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IGovernorCompatibilityBravoUpgradeable.Receipt",
+            "id": 3720,
+            "members": [
+              {
+                "constant": false,
+                "id": 3715,
+                "mutability": "mutable",
+                "name": "hasVoted",
+                "nameLocation": "1399:8:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3720,
+                "src": "1394:13:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 3714,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1394:4:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3717,
+                "mutability": "mutable",
+                "name": "support",
+                "nameLocation": "1423:7:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3720,
+                "src": "1417:13:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 3716,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1417:5:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 3719,
+                "mutability": "mutable",
+                "name": "votes",
+                "nameLocation": "1447:5:11",
+                "nodeType": "VariableDeclaration",
+                "scope": 3720,
+                "src": "1440:12:11",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint96",
+                  "typeString": "uint96"
+                },
+                "typeName": {
+                  "id": 3718,
+                  "name": "uint96",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1440:6:11",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint96",
+                    "typeString": "uint96"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Receipt",
+            "nameLocation": "1376:7:11",
+            "nodeType": "StructDefinition",
+            "scope": 3825,
+            "src": "1369:90:11",
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3721,
+              "nodeType": "StructuredDocumentation",
+              "src": "1465:63:11",
+              "text": " @dev Part of the Governor Bravo's interface."
+            },
+            "functionSelector": "24bc1a64",
+            "id": 3726,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "quorumVotes",
+            "nameLocation": "1542:11:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3722,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1553:2:11"
+            },
+            "returnParameters": {
+              "id": 3725,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3724,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3726,
+                  "src": "1585:7:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3723,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1585:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1584:9:11"
+            },
+            "scope": 3825,
+            "src": "1533:61:11",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3727,
+              "nodeType": "StructuredDocumentation",
+              "src": "1600:119:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"The official record of all proposals ever proposed\"_."
+            },
+            "functionSelector": "013cf08b",
+            "id": 3752,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "proposals",
+            "nameLocation": "1733:9:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3730,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3729,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1743:7:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3728,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1743:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1742:9:11"
+            },
+            "returnParameters": {
+              "id": 3751,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3732,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "nameLocation": "1834:2:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1826:10:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3731,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1826:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3734,
+                  "mutability": "mutable",
+                  "name": "proposer",
+                  "nameLocation": "1858:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1850:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3733,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1850:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3736,
+                  "mutability": "mutable",
+                  "name": "eta",
+                  "nameLocation": "1888:3:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1880:11:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3735,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1880:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3738,
+                  "mutability": "mutable",
+                  "name": "startBlock",
+                  "nameLocation": "1913:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1905:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3737,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1905:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3740,
+                  "mutability": "mutable",
+                  "name": "endBlock",
+                  "nameLocation": "1945:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1937:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3739,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1937:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3742,
+                  "mutability": "mutable",
+                  "name": "forVotes",
+                  "nameLocation": "1975:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1967:16:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3741,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1967:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3744,
+                  "mutability": "mutable",
+                  "name": "againstVotes",
+                  "nameLocation": "2005:12:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "1997:20:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3743,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1997:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3746,
+                  "mutability": "mutable",
+                  "name": "abstainVotes",
+                  "nameLocation": "2039:12:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "2031:20:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3745,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2031:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3748,
+                  "mutability": "mutable",
+                  "name": "canceled",
+                  "nameLocation": "2070:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "2065:13:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3747,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2065:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3750,
+                  "mutability": "mutable",
+                  "name": "executed",
+                  "nameLocation": "2097:8:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3752,
+                  "src": "2092:13:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3749,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2092:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1812:303:11"
+            },
+            "scope": 3825,
+            "src": "1724:392:11",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3753,
+              "nodeType": "StructuredDocumentation",
+              "src": "2122:108:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Function used to propose a new proposal\"_."
+            },
+            "functionSelector": "da95691a",
+            "id": 3772,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "propose",
+            "nameLocation": "2244:7:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3768,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3756,
+                  "mutability": "mutable",
+                  "name": "targets",
+                  "nameLocation": "2278:7:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2261:24:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3754,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2261:7:11",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 3755,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2261:9:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3759,
+                  "mutability": "mutable",
+                  "name": "values",
+                  "nameLocation": "2312:6:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2295:23:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3757,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2295:7:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 3758,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2295:9:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3762,
+                  "mutability": "mutable",
+                  "name": "signatures",
+                  "nameLocation": "2344:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2328:26:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "string[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3760,
+                      "name": "string",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2328:6:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage_ptr",
+                        "typeString": "string"
+                      }
+                    },
+                    "id": 3761,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2328:8:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                      "typeString": "string[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3765,
+                  "mutability": "mutable",
+                  "name": "calldatas",
+                  "nameLocation": "2379:9:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2364:24:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "bytes[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3763,
+                      "name": "bytes",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2364:5:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage_ptr",
+                        "typeString": "bytes"
+                      }
+                    },
+                    "id": 3764,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2364:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                      "typeString": "bytes[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3767,
+                  "mutability": "mutable",
+                  "name": "description",
+                  "nameLocation": "2412:11:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2398:25:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3766,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2398:6:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2251:178:11"
+            },
+            "returnParameters": {
+              "id": 3771,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3770,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3772,
+                  "src": "2454:7:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3769,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2454:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2453:9:11"
+            },
+            "scope": 3825,
+            "src": "2235:228:11",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3773,
+              "nodeType": "StructuredDocumentation",
+              "src": "2469:105:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Queues a proposal of state succeeded\"_."
+            },
+            "functionSelector": "ddf0b009",
+            "id": 3778,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "queue",
+            "nameLocation": "2588:5:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3776,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3775,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "2602:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3778,
+                  "src": "2594:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3774,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2594:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2593:20:11"
+            },
+            "returnParameters": {
+              "id": 3777,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2628:0:11"
+            },
+            "scope": 3825,
+            "src": "2579:50:11",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3779,
+              "nodeType": "StructuredDocumentation",
+              "src": "2635:113:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Executes a queued proposal if eta has passed\"_."
+            },
+            "functionSelector": "fe0d94c1",
+            "id": 3784,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "execute",
+            "nameLocation": "2762:7:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3782,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3781,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "2778:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3784,
+                  "src": "2770:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3780,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2770:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2769:20:11"
+            },
+            "returnParameters": {
+              "id": 3783,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2812:0:11"
+            },
+            "scope": 3825,
+            "src": "2753:60:11",
+            "stateMutability": "payable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3785,
+              "nodeType": "StructuredDocumentation",
+              "src": "2819:130:11",
+              "text": " @dev Cancels a proposal only if sender is the proposer, or proposer delegates dropped below proposal threshold."
+            },
+            "functionSelector": "40e58ee5",
+            "id": 3790,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cancel",
+            "nameLocation": "2963:6:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3788,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3787,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "2978:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3790,
+                  "src": "2970:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3786,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2970:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2969:20:11"
+            },
+            "returnParameters": {
+              "id": 3789,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3004:0:11"
+            },
+            "scope": 3825,
+            "src": "2954:51:11",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3791,
+              "nodeType": "StructuredDocumentation",
+              "src": "3011:95:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Gets actions of a proposal\"_."
+            },
+            "functionSelector": "328dd982",
+            "id": 3808,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getActions",
+            "nameLocation": "3120:10:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3794,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3793,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "3139:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3131:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3792,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3131:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3130:20:11"
+            },
+            "returnParameters": {
+              "id": 3807,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3797,
+                  "mutability": "mutable",
+                  "name": "targets",
+                  "nameLocation": "3242:7:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3225:24:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3795,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3225:7:11",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 3796,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3225:9:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3800,
+                  "mutability": "mutable",
+                  "name": "values",
+                  "nameLocation": "3280:6:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3263:23:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3798,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3263:7:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 3799,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3263:9:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3803,
+                  "mutability": "mutable",
+                  "name": "signatures",
+                  "nameLocation": "3316:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3300:26:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_string_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "string[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3801,
+                      "name": "string",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3300:6:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage_ptr",
+                        "typeString": "string"
+                      }
+                    },
+                    "id": 3802,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3300:8:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_string_storage_$dyn_storage_ptr",
+                      "typeString": "string[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3806,
+                  "mutability": "mutable",
+                  "name": "calldatas",
+                  "nameLocation": "3355:9:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3808,
+                  "src": "3340:24:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "bytes[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3804,
+                      "name": "bytes",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3340:5:11",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_storage_ptr",
+                        "typeString": "bytes"
+                      }
+                    },
+                    "id": 3805,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3340:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes_storage_$dyn_storage_ptr",
+                      "typeString": "bytes[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3211:163:11"
+            },
+            "scope": 3825,
+            "src": "3111:264:11",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 3809,
+              "nodeType": "StructuredDocumentation",
+              "src": "3381:117:11",
+              "text": " @dev Part of the Governor Bravo's interface: _\"Gets the receipt for a voter on a given proposal\"_."
+            },
+            "functionSelector": "e23a9a52",
+            "id": 3819,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getReceipt",
+            "nameLocation": "3512:10:11",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3814,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3811,
+                  "mutability": "mutable",
+                  "name": "proposalId",
+                  "nameLocation": "3531:10:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3819,
+                  "src": "3523:18:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3810,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3523:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3813,
+                  "mutability": "mutable",
+                  "name": "voter",
+                  "nameLocation": "3551:5:11",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3819,
+                  "src": "3543:13:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3812,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3543:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3522:35:11"
+            },
+            "returnParameters": {
+              "id": 3818,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3817,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3819,
+                  "src": "3587:14:11",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Receipt_$3720_memory_ptr",
+                    "typeString": "struct IGovernorCompatibilityBravoUpgradeable.Receipt"
+                  },
+                  "typeName": {
+                    "id": 3816,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 3815,
+                      "name": "Receipt",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 3720,
+                      "src": "3587:7:11"
+                    },
+                    "referencedDeclaration": 3720,
+                    "src": "3587:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Receipt_$3720_storage_ptr",
+                      "typeString": "struct IGovernorCompatibilityBravoUpgradeable.Receipt"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3586:16:11"
+            },
+            "scope": 3825,
+            "src": "3503:100:11",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 3820,
+              "nodeType": "StructuredDocumentation",
+              "src": "3609:254:11",
+              "text": " @dev This empty reserved space is put in place to allow future versions to add new\n variables without shifting down storage in the inheritance chain.\n See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps"
+            },
+            "id": 3824,
+            "mutability": "mutable",
+            "name": "__gap",
+            "nameLocation": "3888:5:11",
+            "nodeType": "VariableDeclaration",
+            "scope": 3825,
+            "src": "3868:25:11",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_uint256_$50_storage",
+              "typeString": "uint256[50]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 3821,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "3868:7:11",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "id": 3823,
+              "length": {
+                "hexValue": "3530",
+                "id": 3822,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "kind": "number",
+                "lValueRequested": false,
+                "nodeType": "Literal",
+                "src": "3876:2:11",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_rational_50_by_1",
+                  "typeString": "int_const 50"
+                },
+                "value": "50"
+              },
+              "nodeType": "ArrayTypeName",
+              "src": "3868:11:11",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_uint256_$50_storage_ptr",
+                "typeString": "uint256[50]"
+              }
+            },
+            "visibility": "private"
+          }
+        ],
+        "scope": 3826,
+        "src": "394:3502:11",
+        "usedErrors": []
+      }
+    ],
+    "src": "125:3772:11"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.11+commit.d7f03943.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.6",
+  "updatedAt": "2022-05-14T13:10:04.930Z",
+  "devdoc": {
+    "details": "Interface extension that adds missing functions to the {Governor} core to provide `GovernorBravo` compatibility. _Available since v4.3._",
+    "kind": "dev",
+    "methods": {
+      "COUNTING_MODE()": {
+        "details": "A description of the possible `support` values for {castVote} and the way these votes are counted, meant to be consumed by UIs to show correct vote options and interpret the results. The string is a URL-encoded sequence of key-value pairs that each describe one aspect, for example `support=bravo&quorum=for,abstain`. There are 2 standard keys: `support` and `quorum`. - `support=bravo` refers to the vote options 0 = Against, 1 = For, 2 = Abstain, as in `GovernorBravo`. - `quorum=bravo` means that only For votes are counted towards quorum. - `quorum=for,abstain` means that both For and Abstain votes are counted towards quorum. NOTE: The string can be decoded by the standard https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams[`URLSearchParams`] JavaScript class."
+      },
+      "cancel(uint256)": {
+        "details": "Cancels a proposal only if sender is the proposer, or proposer delegates dropped below proposal threshold."
+      },
+      "castVote(uint256,uint8)": {
+        "details": "Cast a vote Emits a {VoteCast} event."
+      },
+      "castVoteBySig(uint256,uint8,uint8,bytes32,bytes32)": {
+        "details": "Cast a vote using the user cryptographic signature. Emits a {VoteCast} event."
+      },
+      "castVoteWithReason(uint256,uint8,string)": {
+        "details": "Cast a vote with a reason Emits a {VoteCast} event."
+      },
+      "execute(address[],uint256[],bytes[],bytes32)": {
+        "details": "Execute a successful proposal. This requires the quorum to be reached, the vote to be successful, and the deadline to be reached. Emits a {ProposalExecuted} event. Note: some module can modify the requirements for execution, for example by adding an additional timelock."
+      },
+      "execute(uint256)": {
+        "details": "Part of the Governor Bravo's interface: _\"Executes a queued proposal if eta has passed\"_."
+      },
+      "getActions(uint256)": {
+        "details": "Part of the Governor Bravo's interface: _\"Gets actions of a proposal\"_."
+      },
+      "getReceipt(uint256,address)": {
+        "details": "Part of the Governor Bravo's interface: _\"Gets the receipt for a voter on a given proposal\"_."
+      },
+      "getVotes(address,uint256)": {
+        "details": "Voting power of an `account` at a specific `blockNumber`. Note: this can be implemented in a number of ways, for example by reading the delegated balance from one (or multiple), {ERC20Votes} tokens."
+      },
+      "hasVoted(uint256,address)": {
+        "details": "Returns weither `account` has cast a vote on `proposalId`."
+      },
+      "hashProposal(address[],uint256[],bytes[],bytes32)": {
+        "details": "Hashing function used to (re)build the proposal id from the proposal details.."
+      },
+      "name()": {
+        "details": "Name of the governor instance (used in building the ERC712 domain separator)."
+      },
+      "proposalDeadline(uint256)": {
+        "details": "Block number at which votes close. Votes close at the end of this block, so it is possible to cast a vote during this block."
+      },
+      "proposalSnapshot(uint256)": {
+        "details": "Block number used to retrieve user's votes and quorum. As per Compound's Comp and OpenZeppelin's ERC20Votes, the snapshot is performed at the end of this block. Hence, voting for this proposal starts at the beginning of the following block."
+      },
+      "proposals(uint256)": {
+        "details": "Part of the Governor Bravo's interface: _\"The official record of all proposals ever proposed\"_."
+      },
+      "propose(address[],uint256[],bytes[],string)": {
+        "details": "Create a new proposal. Vote start {IGovernor-votingDelay} blocks after the proposal is created and ends {IGovernor-votingPeriod} blocks after the voting starts. Emits a {ProposalCreated} event."
+      },
+      "propose(address[],uint256[],string[],bytes[],string)": {
+        "details": "Part of the Governor Bravo's interface: _\"Function used to propose a new proposal\"_."
+      },
+      "queue(uint256)": {
+        "details": "Part of the Governor Bravo's interface: _\"Queues a proposal of state succeeded\"_."
+      },
+      "quorum(uint256)": {
+        "details": "Minimum number of cast voted required for a proposal to be successful. Note: The `blockNumber` parameter corresponds to the snaphot used for counting vote. This allows to scale the quroum depending on values such as the totalSupply of a token at this block (see {ERC20Votes})."
+      },
+      "quorumVotes()": {
+        "details": "Part of the Governor Bravo's interface."
+      },
+      "state(uint256)": {
+        "details": "Current state of a proposal, following Compound's convention"
+      },
+      "supportsInterface(bytes4)": {
+        "details": "Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas."
+      },
+      "version()": {
+        "details": "Version of the governor instance (used in building the ERC712 domain separator). Default: \"1\""
+      },
+      "votingDelay()": {
+        "details": "Delay, in number of block, between the proposal is created and the vote starts. This can be increassed to leave time for users to buy voting power, of delegate it, before the voting of a proposal starts."
+      },
+      "votingPeriod()": {
+        "details": "Delay, in number of blocks, between the vote start and vote ends. NOTE: The {votingDelay} can delay the start of the vote. This must be considered when setting the voting duration compared to the voting delay."
+      }
+    },
+    "stateVariables": {
+      "__gap": {
+        "details": "This empty reserved space is put in place to allow future versions to add new variables without shifting down storage in the inheritance chain. See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "COUNTING_MODE()": {
+        "notice": "module:voting"
+      },
+      "getVotes(address,uint256)": {
+        "notice": "module:reputation"
+      },
+      "hasVoted(uint256,address)": {
+        "notice": "module:voting"
+      },
+      "hashProposal(address[],uint256[],bytes[],bytes32)": {
+        "notice": "module:core"
+      },
+      "name()": {
+        "notice": "module:core"
+      },
+      "proposalDeadline(uint256)": {
+        "notice": "module:core"
+      },
+      "proposalSnapshot(uint256)": {
+        "notice": "module:core"
+      },
+      "quorum(uint256)": {
+        "notice": "module:user-config"
+      },
+      "state(uint256)": {
+        "notice": "module:core"
+      },
+      "version()": {
+        "notice": "module:core"
+      },
+      "votingDelay()": {
+        "notice": "module:user-config"
+      },
+      "votingPeriod()": {
+        "notice": "module:user-config"
+      }
+    },
+    "version": 1
+  }
+}

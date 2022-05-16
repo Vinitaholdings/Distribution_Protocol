@@ -1,0 +1,117 @@
+{
+  "contractName": "ValidatorVote",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ValidatorVote.sol\":\"ValidatorVote\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"project:/contracts/ValidatorVote.sol\":{\"keccak256\":\"0x5340e3d7511ea40278365f9095a28a2bf4f22db08a4fae6fef862509b0ccd567\",\"urls\":[\"bzz-raw://1b9ef1b8e2cdb5a17564e2e16d1a0411955fe227953dfa12b6a94efe171bfb76\",\"dweb:/ipfs/QmYAaUdraD5iFutf61dbFbjgirhAffjyHHiVyuuBRdmzGB\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220cf0422b4cccfaa204101a1bd0f243ab1a8eb4710f5379fff9c374f73a6a4b6f064736f6c634300080b0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220cf0422b4cccfaa204101a1bd0f243ab1a8eb4710f5379fff9c374f73a6a4b6f064736f6c634300080b0033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "27:33:57:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "27:33:57:-:0;;;;;",
+  "source": "pragma solidity ^0.8.4;\r\n\r\ncontract ValidatorVote {\r\n    \r\n}",
+  "sourcePath": "C:\\Users\\USER\\Desktop\\PICARDY_DAO\\contracts\\ValidatorVote.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/ValidatorVote.sol",
+    "exportedSymbols": {
+      "ValidatorVote": [
+        11335
+      ]
+    },
+    "id": 11336,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11334,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:57"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ValidatorVote",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 11335,
+        "linearizedBaseContracts": [
+          11335
+        ],
+        "name": "ValidatorVote",
+        "nameLocation": "36:13:57",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 11336,
+        "src": "27:33:57",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:60:57"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/ValidatorVote.sol",
+    "exportedSymbols": {
+      "ValidatorVote": [
+        11335
+      ]
+    },
+    "id": 11336,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11334,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:57"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ValidatorVote",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 11335,
+        "linearizedBaseContracts": [
+          11335
+        ],
+        "name": "ValidatorVote",
+        "nameLocation": "36:13:57",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 11336,
+        "src": "27:33:57",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:60:57"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.11+commit.d7f03943.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.6",
+  "updatedAt": "2022-04-28T18:20:14.023Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

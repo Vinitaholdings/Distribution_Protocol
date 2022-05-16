@@ -1,0 +1,19 @@
+{
+  "name": "picardy_dao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@chainlink/contracts": "^0.4.0",
+    "@openzeppelin/contracts": "^4.6.0",
+    "@openzeppelin/contracts-upgradeable": "^4.5.2",
+    "truffle-assertions": "^0.9.2",
+    "truffle-contract-size": "^2.0.1",
+    "web3": "^1.7.3"
+  }
+}
