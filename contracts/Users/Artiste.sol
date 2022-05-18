@@ -5,12 +5,12 @@ import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-/**
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "../Products/CroudFundNonRefundable.sol";
-import "../Products/CroudFundRefundable.sol";
-import "../Tokens/PicardyArtisteToken.sol";
-*/ 
+
+//import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+//import "../Products/CroudFundNonRefundable.sol";
+//import "../Products/CroudFundRefundable.sol";
+//import "../Tokens/PicardyArtisteToken.sol";
+
 
 contract PicardyArtiste is Ownable {
 
@@ -27,8 +27,8 @@ contract PicardyArtiste is Ownable {
     }
 
     function addProduct(uint _productId, address _productAddress) external onlyOwner {
-        require(!activeProduct);
-        address[] memory newProduct = productMap[_productId];
+        require(!activeProduct[_productId]);
+        address[] storage newProduct = productMap[_productId];
         newProduct.push(_productAddress);
         products.push(_productAddress);
         activeProduct[_productId] = true;
