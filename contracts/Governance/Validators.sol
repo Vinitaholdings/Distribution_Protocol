@@ -186,7 +186,7 @@ contract Validators is VRFConsumerBase, AccessControl, Ownable{
         
     }
 
-    // ONLY ADMIN CAN CHANGE THE STATE OF THE VOTE IN WHEN CONCENSUS IS NOT REACHED //
+    // ONLY ADMIN CAN CHANGE THE STATE OF THE VOTE WHEN CONCENSUS IS NOT REACHED //
     function changeVoteState(uint _proposalId, uint state) external onlyRole(DEFAULT_ADMIN_ROLE){
         require(voteStateMap[_proposalId] == VoteState.GETTING_RESULT);
         

@@ -22,6 +22,7 @@ contract TokenRoyaltySale is Ownable {
 
     TokenRoyaltyState tokenRoyaltyState;
 
+    uint productId = 4;
     uint royaltyPoolSize;
     uint percentage;
     uint royaltyPoolBalance;

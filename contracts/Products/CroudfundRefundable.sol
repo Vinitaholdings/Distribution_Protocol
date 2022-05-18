@@ -29,6 +29,7 @@ contract CroudfundRefundableV1 is Ownable {
     uint fundingTime;
     uint startTime;
     uint fundBalance;
+    uint productId = 2;
     address creator;
     address[] fundersLog;
     

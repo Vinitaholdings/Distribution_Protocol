@@ -26,6 +26,7 @@ contract CroudfundNonRefundable is Ownable {
     uint fundingTime;
     uint startTime;
     uint fundBalance;
+    uint productId = 1;
     address creator;
     address[] fundersLog;
     

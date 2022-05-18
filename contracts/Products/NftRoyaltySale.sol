@@ -32,6 +32,8 @@ contract RoyaltySale is Ownable, ReentrancyGuard, Pausable{
         string symbol;
     }
 
+    uint productId = 3;
+
     Royalty royalty;
     
     address public picardyToken;
