@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract CroudfundNonRefundable is Ownable {
+contract CrowdfundNonRefundable is Ownable {
 
     using Address for address;
 

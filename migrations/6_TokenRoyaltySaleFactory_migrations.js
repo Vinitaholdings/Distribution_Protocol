@@ -16,4 +16,6 @@ module.exports = async function (deployer) {
   const tokenRoyaltySaleFactoryAddress = tokenRoyaltySaleFactory.address
 
   console.log("tokenRoyaltySaleFactoryAddress:" + tokenRoyaltySaleFactoryAddress)
+
+  await tokenRoyaltySaleFactory.createTokenRoyalty(100000, 50, 1)
 };

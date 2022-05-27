@@ -12,4 +12,7 @@ module.exports = async function (deployer) {
   const nftRoyaltySaleFactroyAddress = nftRoyaltySaleFactroy.address
 
   console.log("nftRoyaltySaleFactroyAddress:" + nftRoyaltySaleFactroyAddress)
+
+  await nftRoyaltySaleFactroy.createNftRoyalty(20000, 4, 200, 50, 1, "Something New", "STN", "example.xyz");
+
 };

@@ -33,7 +33,8 @@ contract PicardyProfile is ERC721, Ownable {
         transferOwnership(artisteAddress);
     }
 
-    function addProduct(uint _productId, address _productAddress) external onlyOwner {
+    function addProduct(uint _productId, address _productAddress) external {
+        require(tx.origin == artisteAddress);
         address[] storage newProduct = productMap[_productId];
         newProduct.push(_productAddress);
         products.push(_productAddress);

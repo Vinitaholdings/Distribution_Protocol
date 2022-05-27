@@ -6,12 +6,12 @@
 pragma solidity ^0.8.4;
 pragma experimental ABIEncoderV2;
 
-import "../Products/CroudfundNonRefundable.sol";
+import "../Products/CrowdfundNonRefundable.sol";
 import { IPicardyHub } from "../PicardyHub.sol";
 import {IPicardyProfile} from "../Users/PicardyProfile.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract CraudfundFactory is Ownable {
+contract CrowdfundFactory is Ownable {
     
     address immutable PICARDY_HUB;
     address immutable PICARDY_TOKEN;
@@ -33,10 +33,10 @@ contract CraudfundFactory is Ownable {
         @param _fundGoal The Requested amount from fund
         @param _profileId Caller Profile Id
      */
-    function createCroundfund(uint _fundGoal, uint _fundingTime, uint _profileId) external {
+    function createCrowdfund(uint _fundGoal, uint _fundingTime, uint _profileId) external {
         address profileAddress = IPicardyHub(PICARDY_HUB).getProfileAddress(_profileId);
 
-        CroudfundNonRefundable croudfund = new CroudfundNonRefundable(msg.sender,PICARDY_TOKEN, _fundGoal, _fundingTime);
+        CrowdfundNonRefundable croudfund = new CrowdfundNonRefundable(msg.sender,PICARDY_TOKEN, _fundGoal, _fundingTime);
         IPicardyProfile(profileAddress).addProduct(1, address(croudfund));
     }
 

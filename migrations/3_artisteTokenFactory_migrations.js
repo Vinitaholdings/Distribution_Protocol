@@ -15,6 +15,7 @@ module.exports = async function (deployer, accounts, network) {
   //profileId1 = await picardyHub.getProfileId(accounts[0])
 
   await artisteTokenFactory.createArtisteToken(
-    200000, "f3miToken", "FIT", 1, {from: accounts[0]}
+    200000, "f3miToken", "FIT", 1
   )
+
 };
