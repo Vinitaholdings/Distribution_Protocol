@@ -22,7 +22,6 @@ contract CroudfundNonRefundable is Ownable {
     FundState fundState;
     
     uint fundGoal;
-    uint amountRequested;
     uint fundingTime;
     uint startTime;
     uint fundBalance;
@@ -49,10 +48,9 @@ contract CroudfundNonRefundable is Ownable {
         _;
     }
 
-    constructor (address _creator, address _picardyTokenAddress, uint _fundGoal, uint _amountRequested, uint _fundingTime){
+    constructor (address _creator, address _picardyTokenAddress, uint _fundGoal, uint _fundingTime){
         
         creator = _creator;
-        amountRequested = _amountRequested;
         fundGoal = _fundGoal;
         
         Token memory newToken = tokenAllowed['3RD'];
@@ -63,6 +61,9 @@ contract CroudfundNonRefundable is Ownable {
         startTime = block.timestamp;
     }
 
+    /**
+    
+    */
     function fundArtiste(uint _amount, string calldata _symbol) external {
         require(fundState == FundState.OPEN);
         require(IERC20(tokenAllowed[_symbol].tokenAddress).balanceOf(msg.sender) > 0);
@@ -74,6 +75,9 @@ contract CroudfundNonRefundable is Ownable {
         _fundArtiste(_amount, _symbol);
     }
 
+    /**
+    
+    */
     function withdrawFund(string calldata _symbol) external onlyCreator{
         require(block.timestamp > startTime + fundingTime);
         IERC20(tokenAllowed[_symbol].tokenAddress).transfer(msg.sender, address(this).balance);
@@ -104,6 +108,9 @@ contract CroudfundNonRefundable is Ownable {
 
     // INTERNAL FUNCTIONS //
 
+    /**
+    
+    */
     function _fundArtiste(uint _amount, string calldata _symbol) internal {
 
         Funder memory newFunder = funderMap[msg.sender];

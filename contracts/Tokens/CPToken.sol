@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -8,14 +9,12 @@ contract CPToken is ERC20, Ownable {
     event TokenWrapped(address indexed account, uint indexed amount);
     event TokenUnwrapped(address indexed account, uint indexed amount);
 
-    address public PICARDY_TOKEN;
-    constructor() ERC20("Picardy Croud Pool Token", "CPToken"){}
-
-    function mint(uint _amount) external onlyOwner returns (uint){
-
-        _mint(msg.sender, _amount);
-
-        return _amount;
+    address immutable public PICARDY_TOKEN;
+    constructor(address _picardyToken) ERC20("Picardy CroudPool Token", "CPToken"){
+        PICARDY_TOKEN = _picardyToken;
     }
 
+    function mint(uint _amount) external onlyOwner {
+        _mint(msg.sender, _amount);
+    }
 }

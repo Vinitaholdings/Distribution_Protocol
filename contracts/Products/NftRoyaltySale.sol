@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "../Tokens/PicardyNftBase.sol";
 
-contract RoyaltySale is Ownable, ReentrancyGuard, Pausable{
+contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
     using Address for address;
 
     enum NftRoyaltyState {
@@ -75,7 +75,9 @@ contract RoyaltySale is Ownable, ReentrancyGuard, Pausable{
         nftRoyaltyState = NftRoyaltyState.OPEN;
     }
 
-
+    /**
+        @dev This function is going to be modified with the use of an oracle and chanlink keeper for automation.    
+    */
     function updateRoyalty(uint _amount) external onlyCreator {
         _updateRoyalty(_amount);
     }
@@ -168,10 +170,15 @@ contract RoyaltySale is Ownable, ReentrancyGuard, Pausable{
         
         uint[] storage newTokenId = tokenIdMap[msg.sender];
         uint balance = newPicardyNftBase.balanceOf(msg.sender);
+        uint totalSupply = newPicardyNftBase.totalSupply();
         
-        for (uint i; i< balance; i++){
+        for (uint i; i< totalSupply; i++){
             uint tokenId = IERC721Enumerable(royaltyNftAddress).tokenOfOwnerByIndex(msg.sender, i);
             newTokenId.push(tokenId);
+
+            if(newTokenId.length == balance){
+                break;
+            }
         }
 
         return newTokenId;

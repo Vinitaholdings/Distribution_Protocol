@@ -28,9 +28,9 @@ contract TokenRoyaltySale is Ownable {
     uint royaltyPoolBalance;
     address creator;
     address royaltyCPToken;
-    address picardyToken;
     address private txFeeWallet;
     address[] royaltyPoolMembers;
+    address immutable picardyToken;
 
     mapping (address => uint) royaltyBalance;
     mapping (address => bool) isPoolMember;
@@ -42,11 +42,10 @@ contract TokenRoyaltySale is Ownable {
         _;
     }
 
-    constructor (uint _royaltyPoolSize, uint _percentage, address _creator, address _royaltyCPToken, address _picardyToken){
+    constructor (uint _royaltyPoolSize, uint _percentage, address _creator,  address _picardyToken){
         royaltyPoolSize = _royaltyPoolSize;
         percentage = _percentage;
         creator = _creator;
-        royaltyCPToken = _royaltyCPToken;
         picardyToken = _picardyToken;
         _CPToken();
     }
@@ -123,7 +122,7 @@ contract TokenRoyaltySale is Ownable {
     // INTERNAL FUNCTIONS //
 
     function _CPToken() internal {
-         CPToken newCpToken = new CPToken();
+         CPToken newCpToken = new CPToken(picardyToken);
         cpToken = newCpToken;
         tokenRoyaltyState = TokenRoyaltyState.CLOSED;
     }
@@ -184,5 +183,23 @@ contract TokenRoyaltySale is Ownable {
     function _onlyCreator() internal view {
         require(msg.sender == creator);
     }
+
+}
+
+interface IPicardyTokenRoyaltySale {
+    
+    function getPoolMembers() external view returns (address[] memory);
+
+    function getPoolSize() external view returns(uint);
+
+    function getPoolBalance() external view returns(uint);
+
+    function getMemberPoolSize() external view returns(uint);
+
+    function getRoyaltyBalance() external view returns(uint);
+
+    function getCreator() external view returns(address);
+
+    function getRoyaltyPercentage() external view returns(uint);
 
 }
