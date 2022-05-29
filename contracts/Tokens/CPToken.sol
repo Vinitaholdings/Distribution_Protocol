@@ -10,7 +10,7 @@ contract CPToken is ERC20, Ownable {
     event TokenUnwrapped(address indexed account, uint indexed amount);
 
     address immutable public PICARDY_TOKEN;
-    constructor(address _picardyToken) ERC20("Picardy CroudPool Token", "CPToken"){
+    constructor(address _picardyToken) ERC20("Picardy CrowdPool Token", "CPToken"){
         PICARDY_TOKEN = _picardyToken;
     }
 

@@ -107,7 +107,7 @@ contract PicardyVault is Ownable {
 
     
     /**
-        The volt shares mint calculation
+        The vault shares mint calculation
         a = amount
         b = balance before mint 
         t = total supply of shares
@@ -139,7 +139,7 @@ contract PicardyVault is Ownable {
 
 
     /**
-        The volt shares burn calculation
+        The vault shares burn calculation
         a = amount
         b = balance before burn 
         t = total supply of shares
