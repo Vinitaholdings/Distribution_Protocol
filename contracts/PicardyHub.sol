@@ -107,9 +107,9 @@ contract PicardyHub is Ownable {
 
         uint newProfileId = _nextProfileId();
         
-        PicardyProfile newPicardyArtisteToken = new PicardyProfile(msg.sender, _name, _handle);
+        PicardyProfile newPicardyProfile = new PicardyProfile(msg.sender, _name, _handle);
         
-        Profile memory newProfile = Profile(msg.sender, _name, _handle, newProfileId, newPicardyArtisteToken);
+        Profile memory newProfile = Profile(msg.sender, _name, _handle, newProfileId, newPicardyProfile);
         
         isCreator[msg.sender] = true;
         handleExist[_handle] = true;
