@@ -15,26 +15,60 @@ contract PicardyVault is Ownable {
 
     event FundsWithdrawn(uint indexed amount, address indexed to);
     event NewFundInvestor(address indexed investor);
+    event SharesIncreased(address indexed investor, uint indexed amount);
    
-    uint vaultBalance;
-    mapping (address => uint) UserShares;
+    uint public vaultBalance;
+    uint lockPeriod = 30 days;
+    
+    //mapping (address => uint) UserShares;
+    mapping (address => uint) UserLastDeposit;
+    mapping (address => bool) isVaultMember;
+
+    
     IERC20 public immutable VAULT_TOKEN;
     VSToken vsToken;
+    address vaultToken;
 
     constructor (address _vaultToken){
         VAULT_TOKEN = IERC20(_vaultToken);
+        vaultToken = _vaultToken;
         _start();
     }
 
+   // function approveSpend(uint _amount) external {
+        //require(VAULT_TOKEN.balanceOf(msg.sender) >= _amount);
+        //VAULT_TOKEN.approve(address(this), _amount);
+        //IERC20(vaultToken).approve(address(this), _amount);
+    //}
+
     /**
     
-     */
-    function JoinVault(uint _amount) external {
+    */
+    function joinVault(uint _amount) external {
+        require(IERC20(vaultToken).balanceOf(msg.sender) > _amount); 
+        
+        //VAULT_TOKEN.transferFrom(msg.sender, address(this), _amount);
+        IERC20(vaultToken).transferFrom(msg.sender, address(this), _amount);
         vaultBalance += _amount;
-        VAULT_TOKEN.transfer(address(this), _amount);
         _mintShares(_amount);
+        isVaultMember[msg.sender] = true;
+        UserLastDeposit[msg.sender] = block.timestamp;
 
         emit NewFundInvestor(msg.sender);
+    }
+
+    function increaseShares(uint _amount) external {
+        require(isVaultMember[msg.sender] == true, "Not A Vault Member");
+        require(IERC20(vaultToken).balanceOf(msg.sender) > _amount, "Not Enough Token");
+        
+        IERC20(vaultToken).transferFrom(msg.sender, address(this), _amount);
+        vaultBalance += _amount;
+        _mintShares(_amount);
+
+        isVaultMember[msg.sender] = true;
+        UserLastDeposit[msg.sender] = block.timestamp;
+
+        emit SharesIncreased(msg.sender, _amount);
     }
 
 
@@ -44,6 +78,10 @@ contract PicardyVault is Ownable {
     function vaultOwnerWithdraw(uint _amount) external {
         vaultBalance -= _amount;
         _burnShares(_amount);
+
+        if(IERC20(vsToken).balanceOf(msg.sender) == 0){
+            isVaultMember[msg.sender] = false;
+        }
     }
 
     function withdraw(uint _amount, address _to) external onlyOwner{
@@ -51,6 +89,35 @@ contract PicardyVault is Ownable {
         IERC20(VAULT_TOKEN).transferFrom(address(this), _to, _amount);
 
         emit FundsWithdrawn(_amount , _to);
+    }
+
+    function transferUpdate(address _newVaultMember) external {
+        require(msg.sender == address(vsToken));
+        isVaultMember[_newVaultMember] = true;
+        UserLastDeposit[_newVaultMember] = block.timestamp;
+
+    }
+
+    function updateVaultBalance(uint _amount) external returns(uint){
+        uint newVaultBalance = vaultBalance += _amount;
+        vaultBalance = newVaultBalance;
+
+        return newVaultBalance;
+    }
+
+    function isShareHolder(address _shareHoler) external view returns(uint){
+        uint side;
+        if(IERC20(address(vsToken)).balanceOf(_shareHoler) > 0){
+            side = 1;
+        } else {
+            side = 0;
+        }
+
+        return side;
+    }
+
+    function getVaultBalance() external view returns(uint){
+        return vaultBalance;
     }
 
     /**
@@ -74,7 +141,6 @@ contract PicardyVault is Ownable {
     function getVaultSharesAddress() external view returns(address){
         return address(vsToken);
     }
-
 
     
     // SEND TO COMPOUND FINANCE//
@@ -101,7 +167,7 @@ contract PicardyVault is Ownable {
     
      */
     function _start() internal {
-        VSToken newVSToken = new VSToken();
+        VSToken newVSToken = new VSToken(address(this));
         vsToken = newVSToken; 
     }
 
@@ -162,19 +228,21 @@ contract PicardyVault is Ownable {
      */
     function _burn(uint _amount) internal {
         VSToken newVSToken = VSToken(vsToken);
-        newVSToken.burn(_amount);
+        newVSToken.burn(_amount, msg.sender);
     }
 
 }
 
 interface IPicardyVault{
     
-    function JoinVault(uint _amount) external;
+    function transferUpdate(address _newVaultMember) external;
     
     function vaultOwnerWithdraw(uint _amount) external;
     
     function getShareAmount() external view returns(uint);
     
-    function getSharesValue() external view returns (uint);
+    function getSharesValue() external view returns(uint);
+
+    function getVaultBalance() external view returns(uint);
 
 }

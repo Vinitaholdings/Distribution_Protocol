@@ -10944,7 +10944,7 @@
         4124
       ],
       "PicardyNftBase": [
-        13409
+        13650
       ],
       "ReentrancyGuard": [
         4164
@@ -11059,7 +11059,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 11812,
-        "sourceUnit": 13410,
+        "sourceUnit": 13651,
         "src": "468:38:50",
         "symbolAliases": [],
         "unitAlias": ""
@@ -11106,7 +11106,7 @@
         ],
         "canonicalName": "NftRoyaltySale",
         "contractDependencies": [
-          13409
+          13650
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
@@ -11605,7 +11605,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+              "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
               "typeString": "contract PicardyNftBase"
             },
             "typeName": {
@@ -11615,13 +11615,13 @@
                 "id": 11245,
                 "name": "PicardyNftBase",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 13409,
+                "referencedDeclaration": 13650,
                 "src": "1097:14:50"
               },
-              "referencedDeclaration": 13409,
+              "referencedDeclaration": 13650,
               "src": "1097:14:50",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                 "typeString": "contract PicardyNftBase"
               }
             },
@@ -11639,7 +11639,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+              "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
               "typeString": "contract PicardyNftBase"
             },
             "typeName": {
@@ -11649,13 +11649,13 @@
                 "id": 11248,
                 "name": "PicardyNftBase",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 13409,
+                "referencedDeclaration": 13650,
                 "src": "1142:14:50"
               },
-              "referencedDeclaration": 13409,
+              "referencedDeclaration": 13650,
               "src": "1142:14:50",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                 "typeString": "contract PicardyNftBase"
               }
             },
@@ -11669,7 +11669,7 @@
                   "referencedDeclaration": 11247,
                   "src": "1192:17:50",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                     "typeString": "contract PicardyNftBase"
                   }
                 }
@@ -11677,7 +11677,7 @@
               "expression": {
                 "argumentTypes": [
                   {
-                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                     "typeString": "contract PicardyNftBase"
                   }
                 ],
@@ -11685,10 +11685,10 @@
                 "name": "PicardyNftBase",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
-                "referencedDeclaration": 13409,
+                "referencedDeclaration": 13650,
                 "src": "1177:14:50",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_type$_t_contract$_PicardyNftBase_$13409_$",
+                  "typeIdentifier": "t_type$_t_contract$_PicardyNftBase_$13650_$",
                   "typeString": "type(contract PicardyNftBase)"
                 }
               },
@@ -11703,7 +11703,7 @@
               "src": "1177:33:50",
               "tryCall": false,
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                 "typeString": "contract PicardyNftBase"
               }
             },
@@ -13210,7 +13210,7 @@
                                   "referencedDeclaration": 11247,
                                   "src": "2666:17:50",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                     "typeString": "contract PicardyNftBase"
                                   }
                                 }
@@ -13218,7 +13218,7 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                     "typeString": "contract PicardyNftBase"
                                   }
                                 ],
@@ -13726,7 +13726,7 @@
                         "referencedDeclaration": 11253,
                         "src": "2917:17:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -13737,7 +13737,7 @@
                       "lValueRequested": false,
                       "memberName": "addHolder",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 13366,
+                      "referencedDeclaration": 13607,
                       "src": "2917:27:50",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
@@ -13872,7 +13872,7 @@
                             "referencedDeclaration": 11247,
                             "src": "2974:17:50",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                              "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                               "typeString": "contract PicardyNftBase"
                             }
                           }
@@ -13880,7 +13880,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                              "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                               "typeString": "contract PicardyNftBase"
                             }
                           ],
@@ -14070,7 +14070,7 @@
                           "referencedDeclaration": 11253,
                           "src": "3103:17:50",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                            "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                             "typeString": "contract PicardyNftBase"
                           }
                         },
@@ -14180,7 +14180,7 @@
                               "referencedDeclaration": 11253,
                               "src": "3163:17:50",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                 "typeString": "contract PicardyNftBase"
                               }
                             },
@@ -14191,7 +14191,7 @@
                             "lValueRequested": false,
                             "memberName": "removeHolder",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 13408,
+                            "referencedDeclaration": 13649,
                             "src": "3163:30:50",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
@@ -14967,7 +14967,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                        "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                         "typeString": "contract PicardyNftBase"
                       },
                       "typeName": {
@@ -14977,13 +14977,13 @@
                           "id": 11527,
                           "name": "PicardyNftBase",
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 13409,
+                          "referencedDeclaration": 13650,
                           "src": "3860:14:50"
                         },
-                        "referencedDeclaration": 13409,
+                        "referencedDeclaration": 13650,
                         "src": "3860:14:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -15221,7 +15221,7 @@
                       "nodeType": "NewExpression",
                       "src": "3892:18:50",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_creation_nonpayable$_t_uint256_$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_address_$returns$_t_contract$_PicardyNftBase_$13409_$",
+                        "typeIdentifier": "t_function_creation_nonpayable$_t_uint256_$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_address_$returns$_t_contract$_PicardyNftBase_$13650_$",
                         "typeString": "function (uint256,uint256,uint256,string memory,string memory,string memory,address) returns (contract PicardyNftBase)"
                       },
                       "typeName": {
@@ -15231,13 +15231,13 @@
                           "id": 11530,
                           "name": "PicardyNftBase",
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 13409,
+                          "referencedDeclaration": 13650,
                           "src": "3896:14:50"
                         },
-                        "referencedDeclaration": 13409,
+                        "referencedDeclaration": 13650,
                         "src": "3896:14:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       }
@@ -15253,7 +15253,7 @@
                     "src": "3892:138:50",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                      "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                       "typeString": "contract PicardyNftBase"
                     }
                   },
@@ -15275,7 +15275,7 @@
                       "referencedDeclaration": 11247,
                       "src": "4041:17:50",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                        "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                         "typeString": "contract PicardyNftBase"
                       }
                     },
@@ -15289,13 +15289,13 @@
                       "referencedDeclaration": 11529,
                       "src": "4061:13:50",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                        "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                         "typeString": "contract PicardyNftBase"
                       }
                     },
                     "src": "4041:33:50",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                      "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                       "typeString": "contract PicardyNftBase"
                     }
                   },
@@ -15361,7 +15361,7 @@
                               "referencedDeclaration": 11253,
                               "src": "4157:17:50",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                 "typeString": "contract PicardyNftBase"
                               }
                             },
@@ -15372,7 +15372,7 @@
                             "lValueRequested": false,
                             "memberName": "getSaleCount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 13352,
+                            "referencedDeclaration": 13593,
                             "src": "4157:30:50",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -15610,7 +15610,7 @@
                         "referencedDeclaration": 11253,
                         "src": "4297:17:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -15621,7 +15621,7 @@
                       "lValueRequested": false,
                       "memberName": "getHolders",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 13344,
+                      "referencedDeclaration": 13585,
                       "src": "4297:28:50",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_array$_t_address_$dyn_memory_ptr_$",
@@ -16091,7 +16091,7 @@
                               "referencedDeclaration": 11253,
                               "src": "4588:17:50",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                 "typeString": "contract PicardyNftBase"
                               }
                             },
@@ -16102,7 +16102,7 @@
                             "lValueRequested": false,
                             "memberName": "getSaleCount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 13352,
+                            "referencedDeclaration": 13593,
                             "src": "4588:30:50",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -17496,7 +17496,7 @@
                         "referencedDeclaration": 11253,
                         "src": "5340:17:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -17578,7 +17578,7 @@
                         "referencedDeclaration": 11253,
                         "src": "5409:17:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -17716,7 +17716,7 @@
                                   "referencedDeclaration": 11247,
                                   "src": "5542:17:50",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                     "typeString": "contract PicardyNftBase"
                                   }
                                 }
@@ -17724,7 +17724,7 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                     "typeString": "contract PicardyNftBase"
                                   }
                                 ],
@@ -18656,7 +18656,7 @@
         4124
       ],
       "PicardyNftBase": [
-        13409
+        13650
       ],
       "ReentrancyGuard": [
         4164
@@ -18771,7 +18771,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 11812,
-        "sourceUnit": 13410,
+        "sourceUnit": 13651,
         "src": "468:38:50",
         "symbolAliases": [],
         "unitAlias": ""
@@ -18818,7 +18818,7 @@
         ],
         "canonicalName": "NftRoyaltySale",
         "contractDependencies": [
-          13409
+          13650
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
@@ -19317,7 +19317,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+              "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
               "typeString": "contract PicardyNftBase"
             },
             "typeName": {
@@ -19327,13 +19327,13 @@
                 "id": 11245,
                 "name": "PicardyNftBase",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 13409,
+                "referencedDeclaration": 13650,
                 "src": "1097:14:50"
               },
-              "referencedDeclaration": 13409,
+              "referencedDeclaration": 13650,
               "src": "1097:14:50",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                 "typeString": "contract PicardyNftBase"
               }
             },
@@ -19351,7 +19351,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+              "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
               "typeString": "contract PicardyNftBase"
             },
             "typeName": {
@@ -19361,13 +19361,13 @@
                 "id": 11248,
                 "name": "PicardyNftBase",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 13409,
+                "referencedDeclaration": 13650,
                 "src": "1142:14:50"
               },
-              "referencedDeclaration": 13409,
+              "referencedDeclaration": 13650,
               "src": "1142:14:50",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                 "typeString": "contract PicardyNftBase"
               }
             },
@@ -19381,7 +19381,7 @@
                   "referencedDeclaration": 11247,
                   "src": "1192:17:50",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                     "typeString": "contract PicardyNftBase"
                   }
                 }
@@ -19389,7 +19389,7 @@
               "expression": {
                 "argumentTypes": [
                   {
-                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                     "typeString": "contract PicardyNftBase"
                   }
                 ],
@@ -19397,10 +19397,10 @@
                 "name": "PicardyNftBase",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
-                "referencedDeclaration": 13409,
+                "referencedDeclaration": 13650,
                 "src": "1177:14:50",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_type$_t_contract$_PicardyNftBase_$13409_$",
+                  "typeIdentifier": "t_type$_t_contract$_PicardyNftBase_$13650_$",
                   "typeString": "type(contract PicardyNftBase)"
                 }
               },
@@ -19415,7 +19415,7 @@
               "src": "1177:33:50",
               "tryCall": false,
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                 "typeString": "contract PicardyNftBase"
               }
             },
@@ -20922,7 +20922,7 @@
                                   "referencedDeclaration": 11247,
                                   "src": "2666:17:50",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                     "typeString": "contract PicardyNftBase"
                                   }
                                 }
@@ -20930,7 +20930,7 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                     "typeString": "contract PicardyNftBase"
                                   }
                                 ],
@@ -21438,7 +21438,7 @@
                         "referencedDeclaration": 11253,
                         "src": "2917:17:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -21449,7 +21449,7 @@
                       "lValueRequested": false,
                       "memberName": "addHolder",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 13366,
+                      "referencedDeclaration": 13607,
                       "src": "2917:27:50",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
@@ -21584,7 +21584,7 @@
                             "referencedDeclaration": 11247,
                             "src": "2974:17:50",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                              "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                               "typeString": "contract PicardyNftBase"
                             }
                           }
@@ -21592,7 +21592,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                              "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                               "typeString": "contract PicardyNftBase"
                             }
                           ],
@@ -21782,7 +21782,7 @@
                           "referencedDeclaration": 11253,
                           "src": "3103:17:50",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                            "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                             "typeString": "contract PicardyNftBase"
                           }
                         },
@@ -21892,7 +21892,7 @@
                               "referencedDeclaration": 11253,
                               "src": "3163:17:50",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                 "typeString": "contract PicardyNftBase"
                               }
                             },
@@ -21903,7 +21903,7 @@
                             "lValueRequested": false,
                             "memberName": "removeHolder",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 13408,
+                            "referencedDeclaration": 13649,
                             "src": "3163:30:50",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
@@ -22679,7 +22679,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                        "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                         "typeString": "contract PicardyNftBase"
                       },
                       "typeName": {
@@ -22689,13 +22689,13 @@
                           "id": 11527,
                           "name": "PicardyNftBase",
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 13409,
+                          "referencedDeclaration": 13650,
                           "src": "3860:14:50"
                         },
-                        "referencedDeclaration": 13409,
+                        "referencedDeclaration": 13650,
                         "src": "3860:14:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -22933,7 +22933,7 @@
                       "nodeType": "NewExpression",
                       "src": "3892:18:50",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_creation_nonpayable$_t_uint256_$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_address_$returns$_t_contract$_PicardyNftBase_$13409_$",
+                        "typeIdentifier": "t_function_creation_nonpayable$_t_uint256_$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_address_$returns$_t_contract$_PicardyNftBase_$13650_$",
                         "typeString": "function (uint256,uint256,uint256,string memory,string memory,string memory,address) returns (contract PicardyNftBase)"
                       },
                       "typeName": {
@@ -22943,13 +22943,13 @@
                           "id": 11530,
                           "name": "PicardyNftBase",
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 13409,
+                          "referencedDeclaration": 13650,
                           "src": "3896:14:50"
                         },
-                        "referencedDeclaration": 13409,
+                        "referencedDeclaration": 13650,
                         "src": "3896:14:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       }
@@ -22965,7 +22965,7 @@
                     "src": "3892:138:50",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                      "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                       "typeString": "contract PicardyNftBase"
                     }
                   },
@@ -22987,7 +22987,7 @@
                       "referencedDeclaration": 11247,
                       "src": "4041:17:50",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                        "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                         "typeString": "contract PicardyNftBase"
                       }
                     },
@@ -23001,13 +23001,13 @@
                       "referencedDeclaration": 11529,
                       "src": "4061:13:50",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                        "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                         "typeString": "contract PicardyNftBase"
                       }
                     },
                     "src": "4041:33:50",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                      "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                       "typeString": "contract PicardyNftBase"
                     }
                   },
@@ -23073,7 +23073,7 @@
                               "referencedDeclaration": 11253,
                               "src": "4157:17:50",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                 "typeString": "contract PicardyNftBase"
                               }
                             },
@@ -23084,7 +23084,7 @@
                             "lValueRequested": false,
                             "memberName": "getSaleCount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 13352,
+                            "referencedDeclaration": 13593,
                             "src": "4157:30:50",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -23322,7 +23322,7 @@
                         "referencedDeclaration": 11253,
                         "src": "4297:17:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -23333,7 +23333,7 @@
                       "lValueRequested": false,
                       "memberName": "getHolders",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 13344,
+                      "referencedDeclaration": 13585,
                       "src": "4297:28:50",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_array$_t_address_$dyn_memory_ptr_$",
@@ -23803,7 +23803,7 @@
                               "referencedDeclaration": 11253,
                               "src": "4588:17:50",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                 "typeString": "contract PicardyNftBase"
                               }
                             },
@@ -23814,7 +23814,7 @@
                             "lValueRequested": false,
                             "memberName": "getSaleCount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 13352,
+                            "referencedDeclaration": 13593,
                             "src": "4588:30:50",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$__$returns$_t_uint256_$",
@@ -25208,7 +25208,7 @@
                         "referencedDeclaration": 11253,
                         "src": "5340:17:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -25290,7 +25290,7 @@
                         "referencedDeclaration": 11253,
                         "src": "5409:17:50",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                          "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                           "typeString": "contract PicardyNftBase"
                         }
                       },
@@ -25428,7 +25428,7 @@
                                   "referencedDeclaration": 11247,
                                   "src": "5542:17:50",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                     "typeString": "contract PicardyNftBase"
                                   }
                                 }
@@ -25436,7 +25436,7 @@
                               "expression": {
                                 "argumentTypes": [
                                   {
-                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13409",
+                                    "typeIdentifier": "t_contract$_PicardyNftBase_$13650",
                                     "typeString": "contract PicardyNftBase"
                                   }
                                 ],
@@ -26328,7 +26328,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.6",
-  "updatedAt": "2022-05-31T14:11:35.447Z",
+  "updatedAt": "2022-06-03T18:15:22.494Z",
   "devdoc": {
     "kind": "dev",
     "methods": {
