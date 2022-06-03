@@ -8,7 +8,7 @@ import {IPicardyVault} from "../Products/PicardyVault.sol";
 contract VSToken is ERC20, Ownable {
 
     address immutable public VAULT;
-    constructor(address _vaultAddress) ERC20("Picardy Vault Token", "PVToken"){
+    constructor(address _vaultAddress) ERC20("Picardy Vault Token", "VSToken"){
         VAULT = _vaultAddress;
     }
 

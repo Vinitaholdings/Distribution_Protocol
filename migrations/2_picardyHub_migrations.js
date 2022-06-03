@@ -2,6 +2,10 @@ const PicardyHub = artifacts.require("PicardyHub");
 const PicardyToken = artifacts.require("PicardyToken");
 const PicardyVault = artifacts.require("PicardyVault");
 const VSToken = artifacts.require("VSToken");
+const ArtisteTokenFactory = artifacts.require("ArtisteTokenFactory");
+const CraudfundFactory = artifacts.require("CraudfundFactory");
+const NftRoyaltySaleFactory = artifacts.require("NftRoyaltySaleFactory");
+const TokenRoyaltySaleFactory = artifacts.require("TokenRoyaltySaleFactory");
 
 module.exports = async function (deployer, network, accounts) {
     
@@ -16,10 +20,21 @@ module.exports = async function (deployer, network, accounts) {
     console.log("PicardyToken :" + picardyTokenAddress);
     console.log("PicardyHub :" + picardyHubAddress);
 
-    
-    await picardyHub.createProfile("f3mi", "thef3mi")
+    await deployer.deploy(ArtisteTokenFactory, picardyHubAddress);
+    await deployer.deploy(CraudfundFactory, picardyHubAddress, picardyTokenAddress);
+    await deployer.deploy(NftRoyaltySaleFactory, picardyHubAddress);
+    await deployer.deploy(TokenRoyaltySaleFactory, picardyHubAddress, picardyTokenAddress);
+
+    const artisteTokenFactory = await ArtisteTokenFactory.deployed()
+    const craudfundFactory = await CraudfundFactory.deployed()
+    const nftRoyaltySaleFactory = await NftRoyaltySaleFactory.deployed()
+    const tokenRoyaltySaleFactory = await TokenRoyaltySaleFactory.deployed()
+
+    await picardyHub.createProfile("f3mi", "thef3mi", {from: accounts[0]})
     await picardyHub.createProfile("jay", "meme", {from: accounts[1]})
     await picardyHub.createProfile("esse", "eblvq", {from: accounts[2]})
+
+    await artisteTokenFactory.createArtisteToken(1000000, "F3mi Token", "F3T", 1, {from: accounts[0]})
 
     await picardyToken.transfer(accounts[1], 100000)
     await picardyToken.transfer(accounts[2], 100000)
