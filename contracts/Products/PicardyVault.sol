@@ -71,12 +71,19 @@ contract PicardyVault is Ownable {
         emit SharesIncreased(msg.sender, _amount);
     }
 
+    function getSharesValue() external view returns (uint){
+        uint totalSupply = (IERC20(vsToken).totalSupply());
+        uint sharesBalance = IERC20(vsToken).balanceOf(msg.sender);
+        uint shareValue = (sharesBalance * vaultBalance) / totalSupply;
+
+        return shareValue;
+    }
+
 
     /**
     
      */
-    function vaultOwnerWithdraw(uint _amount) external {
-        vaultBalance -= _amount;
+    function shareHolderWidrawal(uint _amount) external {
         _burnShares(_amount);
 
         if(IERC20(vsToken).balanceOf(msg.sender) == 0){
@@ -130,14 +137,7 @@ contract PicardyVault is Ownable {
     /**
     
      */
-    function getSharesValue() external view returns (uint){
-        uint totalSupply = (IERC20(vsToken).totalSupply());
-        uint sharesBalance = IERC20(vsToken).balanceOf(msg.sender);
-        uint shareValue = (sharesBalance * vaultBalance) / totalSupply;
-
-        return shareValue;
-    }
-
+   
     function getVaultSharesAddress() external view returns(address){
         return address(vsToken);
     }
@@ -214,12 +214,19 @@ contract PicardyVault is Ownable {
         a = sb/t
     */
     function _burnShares(uint _amount) internal {
+        require(IERC20(vsToken).balanceOf(msg.sender) > 0, "Not a share holder");
         uint totalSupply = IERC20(vsToken).totalSupply();
+        uint valuePerShare = vaultBalance/totalSupply;
+        uint userShares = IERC20(vsToken).balanceOf(msg.sender);
+        uint userShareValue = userShares * valuePerShare;
+        uint sharesToBurn = _amount/ valuePerShare;
+        require(userShareValue >= _amount, "Not enough balance");
         
-        require(IERC20(vsToken).balanceOf(msg.sender) >= _amount, "Not a share holder");
+        require(IERC20(vsToken).balanceOf(msg.sender) > sharesToBurn, "Not a share holder");
         uint toWithdraw = (_amount * vaultBalance) / totalSupply;
-        _burn(_amount);
-        VAULT_TOKEN.transferFrom(address(this), msg.sender, toWithdraw);
+        vaultBalance -= toWithdraw;
+        _burn(sharesToBurn);
+        IERC20(vaultToken).transfer(msg.sender, toWithdraw);
 
     }
 

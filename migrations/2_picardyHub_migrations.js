@@ -6,6 +6,7 @@ const ArtisteTokenFactory = artifacts.require("ArtisteTokenFactory");
 const CraudfundFactory = artifacts.require("CraudfundFactory");
 const NftRoyaltySaleFactory = artifacts.require("NftRoyaltySaleFactory");
 const TokenRoyaltySaleFactory = artifacts.require("TokenRoyaltySaleFactory");
+const PicardyProfile = artifacts.require("PicardyProfile");
 
 module.exports = async function (deployer, network, accounts) {
     
@@ -46,14 +47,15 @@ module.exports = async function (deployer, network, accounts) {
 
     console.log("profileId1 :" + profileId1)
     console.log("profileId2 :" + profileId2)
-    console.log("profileId3 :" + profileId3)
+    //console.log("profileId3 :" + profileId3)
 
-    profileAddress = await picardyHub.getProfileAddress(profileId1)
+    profileAddress1 = await picardyHub.getProfileAddress(profileId1)
 
     profileName = await picardyHub.getProfileName(profileId1)
-    
-    console.log("profileAddress:" + profileAddress)
+
+    console.log("profileAddress1:" + profileAddress1)
     console.log("ProfileName:" + profileName)
+ 
 
     await picardyHub.createVault(picardyTokenAddress)
 
@@ -66,6 +68,10 @@ module.exports = async function (deployer, network, accounts) {
     let picardyVault = await PicardyVault.at(vaultAddress);
 
     console.log("profile1Balance:" + profile1Balance)
+
+    let profile1 = await PicardyProfile.at(profileAddress1)
+    let artisteAddress = await profile1.getArtiste()
+    console.log("artiste Address:" + artisteAddress)
 
     await  picardyToken.approve(vaultAddress, 10000, {from: accounts[1]})
     await  picardyToken.approve(vaultAddress, 10000, {from: accounts[2]})
@@ -89,7 +95,7 @@ module.exports = async function (deployer, network, accounts) {
     
     console.log("shares1:" + shares1)
     console.log("shares2:" + shares2)
-    console.log("shares3:" + shares3)
+    //console.log("shares3:" + shares3)
 
     await picardyVault.updateVaultBalance(1000, {from: accounts[0]})
 
@@ -100,8 +106,8 @@ module.exports = async function (deployer, network, accounts) {
 
     console.log("before shareValue1 :" + shareValue1)
     console.log("before shareValue2 :" + shareValue2)
-    console.log("before shareValue3 :" + shareValue3)
-    console.log("before shareValue0 :" + shareValue0)
+    //console.log("before shareValue3 :" + shareValue3)
+    //console.log("before shareValue0 :" + shareValue0)
 
     let vaultBalance = await picardyVault.getVaultBalance({from: accounts[1]}).toString()
     console.log("VaultBalance :" + vaultBalance)
@@ -124,10 +130,18 @@ module.exports = async function (deployer, network, accounts) {
     
     console.log("af shareValue1 :" + afShareValue1)
     console.log("af shareValue2 :" + afShareValue2)
-    console.log("af shareValue3 :" + afShareValue3)
-    console.log("af shareValue0 :" + afShareValue0)
-    console.log("af shareValue4 :" + afShareValue4)
+    //console.log("af shareValue3 :" + afShareValue3)
+    //console.log("af shareValue0 :" + afShareValue0)
+    //console.log("af shareValue4 :" + afShareValue4)
 
     let side = await picardyVault.isShareHolder(accounts[4])
     console.log("side:" + side)
+
+    await picardyVault.shareHolderWidrawal(400, {from: accounts[1]})
+    let newShareValue1 = await picardyVault.getSharesValue({from: accounts[1]})
+
+    let newShares1 = await picardyVault.getShareAmount({from: accounts[1]})
+    
+    console.log("newShareValue1:" + newShareValue1)
+    console.log("newShares1:" + newShares1)
 };
