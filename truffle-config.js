@@ -40,11 +40,13 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
+    /**
      development: {
       host: "127.0.0.1",     // Localhost (default: none)
       port: 8545,            // Standard Ethereum port (default: none)
       etwork_id: "*",       // Any network (default: none)
-    },
+    }, 
+    */ 
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -113,5 +115,11 @@ module.exports = {
     // }
   // }
 
-  plugins: ["truffle-contract-size"]
+  plugins: 
+    ["truffle-contract-size", "truffle-plugin-verify"
+  ],
+
+  api_keys: {
+    etherscan: "KDKHCB18XK8ET6CU81RKY3RG1BWTVMZVWK"
+  }
 };

@@ -6,7 +6,7 @@
 pragma solidity ^0.8.4;
 pragma experimental ABIEncoderV2;
 
-import "../Products/CrowdfundNonRefundable.sol";
+import "../Products/CraudfundNonRefundable.sol";
 import { IPicardyHub } from "../PicardyHub.sol";
 import {IPicardyProfile} from "../Users/PicardyProfile.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";

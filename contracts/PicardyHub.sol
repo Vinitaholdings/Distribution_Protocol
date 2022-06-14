@@ -8,6 +8,7 @@ pragma experimental ABIEncoderV2;
 
 import "./Users/PicardyProfile.sol";
 import "./Products/PicardyVault.sol";
+import "./Users/CreatorFollow.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract PicardyHub is Ownable {
@@ -21,6 +22,7 @@ contract PicardyHub is Ownable {
         string handle;
         uint profileId;
         PicardyProfile profileAddress;
+        CreatorFollow creatorFollow;
     }
 
     struct Vault{
@@ -68,6 +70,12 @@ contract PicardyHub is Ownable {
         return true;
     }
 
+    function followCreator(string memory _handle) external {
+        require(handleExist[_handle] == false, "Handle Exists");
+        _followCreator(_handle);
+    }
+
+
     function checkIsCreator(uint _profileId) external view returns(bool){
         require(profileExist[_profileId] == true);   
         return true;
@@ -108,8 +116,9 @@ contract PicardyHub is Ownable {
         uint newProfileId = _nextProfileId();
         
         PicardyProfile newPicardyProfile = new PicardyProfile(msg.sender, _name, _handle);
+        CreatorFollow newCreatorFollow = new CreatorFollow(_handle, msg.sender);
         
-        Profile memory newProfile = Profile(msg.sender, _name, _handle, newProfileId, newPicardyProfile);
+        Profile memory newProfile = Profile(msg.sender, _name, _handle, newProfileId, newPicardyProfile, newCreatorFollow);
         
         isCreator[msg.sender] = true;
         handleExist[_handle] = true;
@@ -124,6 +133,9 @@ contract PicardyHub is Ownable {
 
     }
 
+    function _followCreator(string memory _handle) internal {
+
+    }
 
 
     function _onlyCreator() internal view {
@@ -131,9 +143,7 @@ contract PicardyHub is Ownable {
     }
 
     function _nextProfileId() internal view returns(uint){
-        
         uint newProfileId = profileIdLog.length + 1;
-        
         return newProfileId;
     }
 

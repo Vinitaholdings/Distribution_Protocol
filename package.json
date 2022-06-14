@@ -20,5 +20,8 @@
     "truffle-assertions": "^0.9.2",
     "truffle-contract-size": "^2.0.1",
     "web3": "^1.7.3"
+  },
+  "devDependencies": {
+    "truffle-plugin-verify": "^0.5.26"
   }
 }

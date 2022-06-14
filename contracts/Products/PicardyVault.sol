@@ -216,7 +216,7 @@ contract PicardyVault is Ownable {
     function _burnShares(uint _amount) internal {
         require(IERC20(vsToken).balanceOf(msg.sender) > 0, "Not a share holder");
         uint totalSupply = IERC20(vsToken).totalSupply();
-        uint valuePerShare = vaultBalance/totalSupply;
+        uint valuePerShare = vaultBalance/totalSupply; 
         uint userShares = IERC20(vsToken).balanceOf(msg.sender);
         uint userShareValue = userShares * valuePerShare;
         uint sharesToBurn = _amount/ valuePerShare;
