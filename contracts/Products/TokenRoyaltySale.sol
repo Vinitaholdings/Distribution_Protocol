@@ -91,6 +91,10 @@ contract TokenRoyaltySale is Ownable {
         return royaltyPoolMembers;
     }
 
+    function getPoolMemberCount() external view returns (uint){
+        return royaltyPoolMembers.length;
+    }
+
     function getPoolSize() external view returns(uint){
         return royaltyPoolSize;
     }

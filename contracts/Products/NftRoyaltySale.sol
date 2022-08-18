@@ -37,7 +37,8 @@ contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
     Royalty royalty;
     
     address public picardyToken;
-    address txFeeAddress;
+    address addr = 0x8F9F16Dd546cb2250f323D8391a85fb3C8F8EDAa;
+    address payable taxAddress = payable(addr);
 
     PicardyNftBase royaltyNftAddress;
     
@@ -75,6 +76,13 @@ contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
         nftRoyaltyState = NftRoyaltyState.OPEN;
     }
 
+    function buyRoyalty(uint _mintAmount) external payable {
+        uint cost = royalty.cost;
+        require(nftRoyaltyState == NftRoyaltyState.OPEN);
+        require(msg.value >= cost * _mintAmount, "Insufficient funds!");
+        newPicardyNftBase.buyRoyalty(_mintAmount);
+    }
+
     /**
         @dev This function is going to be modified with the use of an oracle and chanlink keeper for automation.    
     */
@@ -82,7 +90,18 @@ contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
         _updateRoyalty(_amount);
     }
 
-    function ApproveTransferRoyalty(uint[] memory _tokenId) external {
+    function getTokenDetails() external view returns(uint, uint, uint, string memory, string memory){
+        
+        uint price = royalty.cost;
+        uint maxSupply= royalty.maxSupply;
+        uint percentage=royalty.percentage;
+        string memory symbol =royalty.symbol;
+        string memory name = royalty.name;
+
+        return (price, maxSupply, percentage, symbol, name);
+    }
+
+    function approveTransferRoyalty(uint[] memory _tokenId) external {
 
         for(uint i; i < _tokenId.length; i++){
             require(isApproved[_tokenId[i]] == false);
@@ -92,7 +111,7 @@ contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
         }
     }
 
-    function TransferRoyalty(address _holder, uint _tokenId) external {
+    function transferRoyalty(address _holder, uint _tokenId) external {
         require(isApproved[_tokenId] == true);
         newPicardyNftBase.addHolder(_holder);
 
@@ -105,7 +124,7 @@ contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
         }
     }
 
-    function withdraw() external {
+    function withdraw() external onlyCreator {
         _withdraw();
     }
 
@@ -130,6 +149,7 @@ contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
         return tokenIds;
     }
 
+
     // INTERNAL FUNCTIONS//
 
     function _picardyNft() internal {
@@ -151,13 +171,24 @@ contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
 
     function _withdraw() internal { 
         require (newPicardyNftBase.getSaleCount() == royalty.maxSupply);
+        
 
-        uint balance = IERC20(picardyToken).balanceOf(address(this));
-        uint txFee = balance * 5 / 100;
-        uint toWithdraw = balance - txFee;
+         uint balance = address(this).balance;
+         uint txFee = balance * 5 / 100;
+         uint toWithdraw = balance - txFee;
 
-        IERC20(picardyToken).transferFrom(address(this), royalty.creator, toWithdraw);
-        IERC20(picardyToken).transferFrom(address(this), txFeeAddress, txFee);
+            (bool os, ) = payable(taxAddress).call{value: txFee}("");
+            require(os);
+
+            (bool hs, ) = payable(msg.sender).call{value: toWithdraw}("");
+            require(hs);
+    
+            
+
+        //implimented if an ERC20 token is used
+
+        //IERC20(picardyToken).transferFrom(address(this), royalty.creator, toWithdraw);
+        //IERC20(picardyToken).transferFrom(address(this), txFeeAddress, txFee);
     
     }
 
@@ -194,4 +225,9 @@ contract NftRoyaltySale is Ownable, ReentrancyGuard, Pausable{
 
         return valuePerNft; 
     }
+}
+
+interface IPicardyNftRoyaltySale {
+    function getTokenIds() external returns(uint[] memory);
+    function getTokenDetails() external returns(uint, uint, uint, string memory, string memory);
 }

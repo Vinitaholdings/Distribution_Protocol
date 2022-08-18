@@ -52,7 +52,7 @@ contract NftRoyaltySaleFactory is Ownable {
 
         NftRoyaltySale nftRoyalty = new NftRoyaltySale(_maxSupply, _maxMintAmount, _cost,  _percentage , _name, _symbol, _initBaseURI, _ArtisteName, msg.sender);
 
-        IPicardyProfile(profileAddress).addProduct(3, address(nftRoyalty));
+        IPicardyProfile(profileAddress).addProduct(3, address(nftRoyalty), _name);
     }
 
     function _isCreator(uint _profileId) internal view {

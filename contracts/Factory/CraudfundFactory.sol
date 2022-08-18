@@ -33,11 +33,11 @@ contract CrowdfundFactory is Ownable {
         @param _fundGoal The Requested amount from fund
         @param _profileId Caller Profile Id
      */
-    function createCrowdfund(uint _fundGoal, uint _fundingTime, uint _profileId) external {
+    function createCrowdfund(uint _fundGoal, uint _fundingTime, uint _profileId, string memory _description) external {
         address profileAddress = IPicardyHub(PICARDY_HUB).getProfileAddress(_profileId);
 
         CrowdfundNonRefundable croudfund = new CrowdfundNonRefundable(msg.sender,PICARDY_TOKEN, _fundGoal, _fundingTime);
-        IPicardyProfile(profileAddress).addProduct(1, address(croudfund));
+        IPicardyProfile(profileAddress).addProduct(1, address(croudfund), _description);
     }
 
     function _isCreator(uint _profileId) internal view {

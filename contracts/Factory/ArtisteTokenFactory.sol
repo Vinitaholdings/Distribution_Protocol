@@ -33,16 +33,16 @@ contract ArtisteTokenFactory is Ownable{
         @param _symbol Token symbol
         @param _profileId caller profileId 
      */
-    function createArtisteToken(uint _totalAmount, string memory _name, string memory _symbol, uint _profileId) external isCreator(_profileId){ 
-        _createArtisteToken(_totalAmount, _name, _symbol, _profileId);
+    function createArtisteToken(uint _totalAmount, string memory _name, string memory _symbol, string memory _description, uint _profileId) external isCreator(_profileId){ 
+        _createArtisteToken(_totalAmount, _name, _symbol, _profileId, _description);
     }
 
-    function _createArtisteToken(uint _totalAmount, string memory _name, string memory _symbol, uint _profileId) internal {
+    function _createArtisteToken(uint _totalAmount, string memory _name, string memory _symbol, uint _profileId, string memory _description) internal {
         
         address profileAddress = IPicardyHub(PICARDY_HUB).getProfileAddress(_profileId);
 
         PicardyArtisteToken token = new PicardyArtisteToken(_totalAmount, _name, _symbol, msg.sender);
-        IPicardyProfile(profileAddress).addProduct(2, address(token));
+        IPicardyProfile(profileAddress).addProduct(2, address(token), _description);
     }
 
     function _isCreator(uint _profileId) internal view {

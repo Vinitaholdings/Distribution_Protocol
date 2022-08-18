@@ -45,18 +45,21 @@ contract PicardyNftBase is ERC721Enumerable, Pausable, Ownable {
   }
 
   // public
-  function buyRoyalty(uint256 _mintAmount) public onlyOwner {
-    require(IERC20(picardyToken).balanceOf(msg.sender) >= cost * _mintAmount);
 
+  // Holders has to approve spend before buying the token
+  function buyRoyalty(uint256 _mintAmount) public onlyOwner {
+     
+    uint toPay = cost * _mintAmount;
     uint256 supply = totalSupply();
+    
     require(_mintAmount > 0);
     require(_mintAmount <= maxMintAmount);
     require(supply + _mintAmount <= maxSupply);
-
-    uint toPay = cost * _mintAmount;
+    require(IERC20(picardyToken).balanceOf(msg.sender) >= toPay, "Not Enough Token");
+    require(IERC20(picardyToken).allowance(msg.sender, address(this)) >= toPay, "Approve TOken");
 
     if (msg.sender != creator) {
-      IERC20(picardyToken).transfer(address(this), toPay);
+      IERC20(picardyToken).transferFrom(msg.sender, address(this), toPay);
     }
 
     holders.push(msg.sender);

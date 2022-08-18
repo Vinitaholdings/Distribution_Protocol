@@ -8,8 +8,9 @@ pragma experimental ABIEncoderV2;
 
 import "./Users/PicardyProfile.sol";
 import "./Products/PicardyVault.sol";
-import "./Users/CreatorFollow.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import {ICreatorFollowInterface} from "./Users/CreatorFollow.sol";
+import {IFollowFactory} from "./Factory/FollowFactory.sol";
 
 contract PicardyHub is Ownable {
 
@@ -21,8 +22,8 @@ contract PicardyHub is Ownable {
         string name;
         string handle;
         uint profileId;
-        PicardyProfile profileAddress;
-        CreatorFollow creatorFollow;
+        address profileAddress;
+        address creatorFollow;
     }
 
     struct Vault{
@@ -31,14 +32,15 @@ contract PicardyHub is Ownable {
     }
 
     address immutable PICARDY_TOKEN;
+    address public immutable followFactoryAddress;
     uint[] profileIdLog;
 
     mapping (address => bool) isCreator;
+    mapping (string => uint) handleToProfileId;
     mapping (uint => Profile) profileMap;
     mapping (string => bool) handleExist;
     mapping (uint => Vault) vaultMap;
     mapping (uint => bool) profileExist;
-    mapping (address => uint) profileId;
 
     Vault[] vaultsLog;
     
@@ -48,8 +50,9 @@ contract PicardyHub is Ownable {
         _;
     }
 
-    constructor(address _picardyToken) {
+    constructor(address _picardyToken, address _followFactory) {
        PICARDY_TOKEN = _picardyToken;
+       followFactoryAddress = _followFactory;
     }
 
 
@@ -71,8 +74,11 @@ contract PicardyHub is Ownable {
     }
 
     function followCreator(string memory _handle) external {
-        require(handleExist[_handle] == false, "Handle Exists");
         _followCreator(_handle);
+    }
+
+    function unfollowCreator(string memory _handle) external {
+        _unfollowCreator(_handle);
     }
 
 
@@ -91,8 +97,8 @@ contract PicardyHub is Ownable {
     }    
 
     function getProfileAddress(uint _profileId) external view returns (address){
-        PicardyProfile profileAddress = profileMap[_profileId].profileAddress;
-        return address(profileAddress);
+        address newProfileAddress = profileMap[_profileId].profileAddress;
+        return newProfileAddress;
     }
 
     function getProfileName(uint _profileId) external view returns (string memory){
@@ -100,41 +106,81 @@ contract PicardyHub is Ownable {
         return name;
     }
 
-    function getProfileId(address _profileOwner) external view returns(uint){
-        return profileId[_profileOwner];
+    function getProfileId(string calldata _handle) external view returns(uint){
+        return handleToProfileId[_handle];
+    }
+
+    function getProfileIdByHandle(string memory _handle) external view returns(uint){
+        return handleToProfileId[_handle];
+    }
+
+    function getHandle(uint _profileId) external view returns(string memory){
+        return profileMap[_profileId].handle;
     }
 
     function getVaultAddress(uint _vaultId) external view returns(PicardyVault){
         return vaultMap[_vaultId].picardyVaultAddress;
     }
 
+    function getProfilDetails(string memory _handle) external view returns(address, address, uint, string memory){
+        uint profileId = handleToProfileId[_handle];
+        address profileAddress = profileMap[profileId].profileAddress;
+        address creator = profileMap[profileId].creator;
+        string memory name = profileMap[profileId].name;
+
+        return (profileAddress, creator, profileId, name);
+    }
+
+    function checkHandle(string calldata _handle) external view returns(bool){
+        if (handleExist[_handle] == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function updateCreatorFollow(string calldata _handle, address _followAddress) external {
+        uint profileId = handleToProfileId[_handle];
+        profileMap[profileId].creatorFollow = _followAddress;
+    }
 
     // INTERNAL FUNCTIONS//
 
     function _createProfile(string memory _name, string memory _handle) internal returns(bool success, uint _profileId){
-
         uint newProfileId = _nextProfileId();
+        PicardyProfile newPicardyProfile = new PicardyProfile(msg.sender, _name, _handle, address(this));
+        IFollowFactory(followFactoryAddress).createFollowToken(_handle, msg.sender);
         
-        PicardyProfile newPicardyProfile = new PicardyProfile(msg.sender, _name, _handle);
-        CreatorFollow newCreatorFollow = new CreatorFollow(_handle, msg.sender);
-        
-        Profile memory newProfile = Profile(msg.sender, _name, _handle, newProfileId, newPicardyProfile, newCreatorFollow);
+        handleToProfileId[_handle] = newProfileId;
         
         isCreator[msg.sender] = true;
         handleExist[_handle] = true;
-        
         profileIdLog.push(newProfileId);
         profileExist[newProfileId] = true;
-        profileId[msg.sender] = newProfileId;
-        
+
+        address followAddress = IFollowFactory(followFactoryAddress).getCreatorFollowAddress(_handle);
+        Profile memory newProfile = Profile(msg.sender, _name, _handle, newProfileId, address(newPicardyProfile), followAddress);
         profileMap[newProfileId] = newProfile;
+    
+        
+        IPicardyProfile(address(newPicardyProfile)).updateFollowAddress(followAddress);
         
         return (success, _profileId);
 
     }
 
     function _followCreator(string memory _handle) internal {
+        require(handleExist[_handle] == true, "Handle does not exist");
+        uint newProfileId = handleToProfileId[_handle];
+        address followAddress = address(profileMap[newProfileId].creatorFollow);
+        ICreatorFollowInterface(followAddress).followCreator(msg.sender);
+    }
 
+    function _unfollowCreator(string memory _handle) internal {
+        require(handleExist[_handle] == true, "Handle does not exist");
+        uint newProfileId = handleToProfileId[_handle];
+        address followAddress = address(profileMap[newProfileId].creatorFollow);
+        ICreatorFollowInterface(followAddress).unfollowCreator(msg.sender);
     }
 
 
@@ -160,4 +206,12 @@ interface IPicardyHub{
     function getProfileName(uint _profileId) external view returns (string memory);
 
     function getProfileId(address _profileOwner) external view returns(uint);
+
+    function checkHandle(string calldata _handle) external view returns(bool);
+
+    function followCreator(string memory _handle) external;
+
+    function unfollowCreator(string memory _handle) external;
+
+     function getHandle(uint _profileId) external view returns(string memory);
 }

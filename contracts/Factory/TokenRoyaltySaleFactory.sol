@@ -34,11 +34,11 @@ contract TokenRoyaltySaleFactory is Ownable {
         @param _returnPercentage Percentage of royalty to sell
         @param _profileId Caller profile ID
     */
-    function createTokenRoyalty(uint _askAmount, uint _returnPercentage, uint _profileId) external isCreator(_profileId){
+    function createTokenRoyalty(uint _askAmount, uint _returnPercentage, uint _profileId, string memory _description) external isCreator(_profileId){
         address profileAddress = IPicardyHub(PICARDY_HUB).getProfileAddress(_profileId); 
 
         TokenRoyaltySale tokenRoyalty = new TokenRoyaltySale(_askAmount, _returnPercentage, msg.sender, PICARDY_TOKEN);
-        IPicardyProfile(profileAddress).addProduct(4, address(tokenRoyalty));
+        IPicardyProfile(profileAddress).addProduct(4, address(tokenRoyalty), _description);
     }
 
     function _isCreator(uint _profileId) internal view {
